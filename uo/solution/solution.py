@@ -121,7 +121,7 @@ class Solution(Generic[R_co,A_co], metaclass=ABCMeta):
         return self.representation
 
 
-    def copy_from(self, original)->None:
+    def copy_from(self, original:'Solution')->None:
         """
         Copy all data from the original target solution
         """
