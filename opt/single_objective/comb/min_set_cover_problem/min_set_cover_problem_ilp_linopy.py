@@ -132,15 +132,18 @@ class MinSetCoverProblemIntegerLinearProgrammingSolver(Optimizer):
         """
         return self.__model    
 
+    def init(self)->None:
+        super().init()
+        self.iteration = -1
+        self.evaluation = -1
+        
 
     ### OVAJ DEO TREBA LEPO ISPRAVITI DA RADI ONO STO TREBA ZA MOJ PROBLEM!!!!!!!!
     def optimize(self)->MinSetCoverProblemIntegerLinearProgrammingSolution:
         """
         Uses ILP model in order to solve MinSetCoverProblem
         """
-        self.iteration = -1
-        self.evaluation = -1
-        self.execution_started = datetime.now() 
+        self.init()
         l = []
         universe = self.problem.universe
         subsets = self.problem.subsets

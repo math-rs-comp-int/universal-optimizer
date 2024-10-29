@@ -36,26 +36,26 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
     
     def __init__(self, dimension:int)->None:
         """
-        Create new `VnsLocalSearchSupportStandardFirsttImprovementBitArray` instance
+        Create new `VnsLocalSearchSupportStandardFirstImprovementBitArray` instance
         """
         super().__init__(dimension=dimension)
 
     def __copy__(self):
         """
-        Internal copy of the `VnsLocalSearchSupportStandardFirsttImprovementBitArray`
+        Internal copy of the `VnsLocalSearchSupportStandardFirstImprovementBitArray`
 
-        :return: new `VnsLocalSearchSupportStandardFirsttImprovementBitArray` instance with the same properties
-        :rtype: `VnsLocalSearchSupportStandardFirsttImprovementBitArray`
+        :return: new `VnsLocalSearchSupportStandardFirstImprovementBitArray` instance with the same properties
+        :rtype: `VnsLocalSearchSupportStandardFirstImprovementBitArray`
         """
         sol = deepcopy(self)
         return sol
 
     def copy(self):
         """
-        Copy the `VnsLocalSearchSupportStandardFirsttImprovementBitArray` instance
+        Copy the `VnsLocalSearchSupportStandardFirstImprovementBitArray` instance
 
-        :return: new `VnsLocalSearchSupportStandardFirsttImprovementBitArray` instance with the same properties
-        :rtype: `VnsLocalSearchSupportStandardFirsttImprovementBitArray`
+        :return: new `VnsLocalSearchSupportStandardFirstImprovementBitArray` instance with the same properties
+        :rtype: `VnsLocalSearchSupportStandardFirstImprovementBitArray`
         """
         return self.__copy__()
 
@@ -84,8 +84,13 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
             # collect positions for inversion from indexes
             positions:list[int] = indexes.current_state()
             # invert and compare, switch and exit if new is better
-            for pos in positions:
-                solution.representation.invert(pos)
+            mask:BitArray = BitArray(length=solution.representation.len)
+            for i in positions:
+                partial_mask = BitArray(length=solution.representation.len)
+                partial_mask[-1] = True
+                partial_mask.ror(i)
+                mask |= partial_mask
+            solution.representation ^= mask 
             if optimizer.should_finish():
                 solution.copy_from(start_sol)
                 return False
@@ -120,7 +125,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
         :return: string representation of vns support instance
         :rtype: str
         """        
-        return 'VnsLocalSearchSupportStandardFirsttImprovementBitArray'
+        return 'VnsLocalSearchSupportStandardFirstImprovementBitArray'
 
     def __str__(self)->str:
         """

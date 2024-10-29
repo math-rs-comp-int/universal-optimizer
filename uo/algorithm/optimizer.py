@@ -296,8 +296,11 @@ class Optimizer(metaclass=ABCMeta):
         Method for optimization   
         """
         raise NotImplementedError()
-
-
+    
+    @abstractmethod
+    def init(self)->None:
+        self.execution_started = datetime.now()
+    
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 
         group_end:str ='}')->str:
         """

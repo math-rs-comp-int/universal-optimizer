@@ -127,13 +127,16 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolver(Optimizer):
         """
         return self.__model    
 
+    def init(self)->None:
+        super().init()
+        self.iteration = -1
+        self.evaluation = -1
+
     def optimize(self)->MaxOnesCountProblemIntegerLinearProgrammingSolution:
         """
         Uses ILP model in order to solve MaxOnesCountProblem
         """
-        self.iteration = -1
-        self.evaluation = -1
-        self.execution_started = datetime.now() 
+        self.init()
         l = []
         for _ in range(self.problem.dimension):
             l.append(0)

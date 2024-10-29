@@ -24,6 +24,8 @@ from datetime import datetime
 
 from typing import Optional
 
+from bitstring import BitArray
+
 from uo.algorithm.output_control import OutputControl
 from uo.algorithm.metaheuristic.finish_control import FinishControl
 from uo.algorithm.metaheuristic.additional_statistics_control import AdditionalStatisticsControl

@@ -135,6 +135,7 @@ class TeOptimizer(Algorithm):
         """
         Initialization of the total enumeration algorithm
         """
+        super().init()
         self.current_solution = self.solution_template.copy()
         self.__reset_method(self.problem,self.current_solution, self)
         self.write_output_values_if_needed("before_evaluation", "b_e")
@@ -145,7 +146,6 @@ class TeOptimizer(Algorithm):
         self.iteration = 1
 
     def optimize(self)->Solution:
-        self.execution_started = datetime.now()
         self.init()
         logger.debug('Overall number of evaluations: {}'.format(
             self.__te_operations_support.overall_number_of_evaluations(self.problem, 
