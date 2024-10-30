@@ -76,6 +76,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
         if k < optimizer.k_min or k > optimizer.k_max:
             return False
         start_sol:Solution = solution.copy()
+        start_sol.copy_from(solution)
         # initialize indexes
         dim:int = int(math.ceil(math.log2(self.dimension)))
         indexes:ComplexCounterUniformAscending = ComplexCounterUniformAscending(k, dim)

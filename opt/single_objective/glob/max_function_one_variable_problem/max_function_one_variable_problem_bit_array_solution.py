@@ -113,7 +113,9 @@ class FunctionOneVariableMaxProblemBitArraySolution(Solution[BitArray,float]):
         return BitArray(self.representation.bin)
 
     def argument(self, representation:BitArray)->float:
-        x:float = self.domain_from +  float(self.representation.i) * (self.domain_to - self.domain_from) / self.number_of_intervals
+        bin_rep:str = self.representation.b
+        int_rep:int = int(bin_rep, 2)
+        x:float = self.domain_from +  float(int_rep) * (self.domain_to - self.domain_from) / self.number_of_intervals
         return x
     
     def init_random(self, problem:MaxFunctionOneVariableMaxProblem)->None:
