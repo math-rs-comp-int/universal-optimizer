@@ -29,12 +29,6 @@ class AlgorithmVoid(Algorithm):
                     problem=problem, 
                     solution_template=solution_template)
 
-    def __copy__(self):
-        return super().__copy__()
-
-    def copy(self):
-        return self.__copy__()
-
     def init(self):
         return
 

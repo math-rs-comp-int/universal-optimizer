@@ -37,13 +37,6 @@ class SolutionVoidInt(Solution[int, str]):
                 distance_calculation_cache_is_used=distance_calculation_cache_is_used,
                 distance_calculation_cache_max_size=distance_calculation_cache_max_size)
 
-    def __copy__(self):
-        pr = deepcopy(self)
-        return pr
-
-    def copy(self):
-        return self.__copy__()
-
     def copy_from(self, original: Solution) -> None:
         return super().copy_from(original)
     

@@ -65,27 +65,6 @@ class PopulationBasedMetaheuristic(Metaheuristic, metaclass=ABCMeta):
                 solution_template=solution_template)
         self.__current_population:Optional[list[Solution]] =  None
 
-    @abstractmethod
-    def __copy__(self)->'PopulationBasedMetaheuristic':
-        """
-        Internal copy of the current population based metaheuristic
-
-        :return: new `PopulationBasedMetaheuristic` instance with the same properties
-        :rtype: `PopulationBasedMetaheuristic`
-        """
-        met = deepcopy(self)
-        return met
-
-    @abstractmethod
-    def copy(self)->'PopulationBasedMetaheuristic':
-        """
-        Copy the current population based metaheuristic
-        
-        :return: new `PopulationBasedMetaheuristic` instance with the same properties
-        :rtype: `PopulationBasedMetaheuristic`
-        """
-        return self.__copy__()
-
     @property
     def current_population(self)->Optional[list[Solution]]:
         """

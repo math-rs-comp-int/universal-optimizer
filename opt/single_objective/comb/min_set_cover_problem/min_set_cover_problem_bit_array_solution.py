@@ -62,15 +62,6 @@ class MinSetCoverProblemBitArraySolution(Solution[BitArray,str]):
             sol.representation = None
         return sol
 
-    def copy(self)->'MinSetCoverProblemBitArraySolution':
-        """
-        Copy the `MinSetCoverProblemBitArraySolution`
-        
-        :return: new `MinSetCoverProblemBitArraySolution` instance with the same properties
-        :rtype: `MinSetCoverProblemBitArraySolution`
-        """
-        return self.__copy__()
-
     def copy_from(self, original)->None:
         """
         Copy all data from the original target solution

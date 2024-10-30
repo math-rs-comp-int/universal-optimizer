@@ -24,13 +24,6 @@ class ProblemVoidMinSO(Problem):
                 raise TypeError('Parameter \'is_multi_objective\' must be \'bool\' .')        
         super().__init__(name, is_minimization, is_multi_objective)
 
-    def __copy__(self):
-        pr = deepcopy(self)
-        return pr
-
-    def copy(self):
-        return self.__copy__()
-
     @classmethod
     def __load_from_file__(cls, data_representation: str)->None:
         return

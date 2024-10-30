@@ -69,12 +69,6 @@ class MaxFunctionOneVariableMaxProblem(Problem):
                 input_format)
         return cls(expression=params.expression, domain_low=params.domain_low, domain_high=params.domain_high)
 
-    def __copy__(self):
-        pr = deepcopy(self)
-        return pr
-
-    def copy(self):
-        return self.__copy__()
 
     @property
     def expression(self)->str:

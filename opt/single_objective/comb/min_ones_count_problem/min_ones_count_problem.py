@@ -77,25 +77,6 @@ class MinOnesCountProblem(Problem):
             raise ValueError('Loading from file \'{}\' produces invalid dimension'.format(input_file_path))
         return cls(dim=dimension)
 
-    def __copy__(self):
-        """
-        Internal copy of the `MinOnesCountProblem` problem
-
-        :return: new `MinOnesCountProblem` instance with the same properties
-        :rtype: `MinOnesCountProblem`
-        """
-        pr = deepcopy(self)
-        return pr
-
-    def copy(self):
-        """
-        Copy the `MinOnesCountProblem` problem
-
-        :return: new `MinOnesCountProblem` instance with the same properties
-        :rtype: MinOnesCountProblem
-        """
-        return self.__copy__()
-
     @property
     def dimension(self)->int:
         """

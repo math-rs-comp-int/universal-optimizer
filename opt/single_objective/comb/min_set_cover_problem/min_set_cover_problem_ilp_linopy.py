@@ -103,24 +103,6 @@ class MinSetCoverProblemIntegerLinearProgrammingSolver(Optimizer):
             construction_params.output_control, 
             construction_params.problem)
 
-    def __copy__(self):
-        """
-        Internal copy of the current algorithm
-
-        :return:  new `MinSetCoverProblemIntegerLinearProgrammingSolver` instance with the same properties
-        :rtype: :class:`MinSetCoverProblemIntegerLinearProgrammingSolver`
-        """
-        alg = deepcopy(self)
-        return alg
-
-    def copy(self):
-        """
-        Copy the current algorithm
-
-        :return:  new `MinSetCoverProblemIntegerLinearProgrammingSolver` instance with the same properties
-        :rtype: :class:``MinSetCoverProblemIntegerLinearProgrammingSolver``
-        """
-        return self.__copy__()
 
     @property
     def model(self)->Model:

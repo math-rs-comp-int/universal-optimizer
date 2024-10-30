@@ -106,25 +106,6 @@ class EmOptimizerGenerational(EmOptimizer):
             construction_tuple.additional_statistics_control
         )
 
-    def __copy__(self):
-        """
-        Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizerGenerational`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizerGenerational` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizerGenerational`        
-        """
-        em_opt = deepcopy(self)
-        return em_opt
-
-    def copy(self):
-        """
-        Copy the current instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizerGenerational`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizerGenerational` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizerGenerational`        
-        """
-        return self.__copy__()
-
     def init(self)->None:
         """
         Initialization of the generational EM algorithm

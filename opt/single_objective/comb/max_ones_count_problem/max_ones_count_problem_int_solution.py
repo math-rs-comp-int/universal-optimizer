@@ -48,25 +48,7 @@ class MaxOnesCountProblemIntSolution(Solution[int,str]):
                 distance_calculation_cache_is_used=distance_calculation_cache_is_used,
                 distance_calculation_cache_max_size=distance_calculation_cache_max_size)
 
-    def __copy__(self):
-        """
-        Internal copy of the `MaxOnesCountProblemIntSolution`
 
-        :return: new `MaxOnesCountProblemIntSolution` instance with the same properties
-        :rtype: MaxOnesCountProblemIntSolution
-        """
-        sol = deepcopy(self)
-        return sol
-
-    def copy(self):
-        """
-        Copy the `MaxOnesCountProblemIntSolution`
-        
-        :return: new `MaxOnesCountProblemIntSolution` instance with the same properties
-        :rtype: `MaxOnesCountProblemIntSolution`
-        """
-        return self.__copy__()
-    
     def copy_from(self, original: Solution) -> None:
         return super().copy_from(original)
         

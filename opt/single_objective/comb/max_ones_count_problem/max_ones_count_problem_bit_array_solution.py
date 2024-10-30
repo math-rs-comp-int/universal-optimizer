@@ -57,15 +57,6 @@ class MaxOnesCountProblemBitArraySolution(Solution[BitArray,str]):
             sol.representation = None
         return sol
 
-    def copy(self):
-        """
-        Copy the `MaxOnesCountProblemBitArraySolution`
-        
-        :return: new `MaxOnesCountProblemBitArraySolution` instance with the same properties
-        :rtype: `MaxOnesCountProblemBitArraySolution`
-        """
-        return self.__copy__()
-
     def copy_from(self, original)->None:
         """
         Copy all data from the original target solution

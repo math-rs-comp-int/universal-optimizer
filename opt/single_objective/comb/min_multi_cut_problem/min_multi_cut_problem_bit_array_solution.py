@@ -61,15 +61,6 @@ class MinMultiCutProblemBitArraySolution(Solution[BitArray,str]):
             sol.representation = None
         return sol
 
-    def copy(self)->'MinMultiCutProblemBitArraySolution':
-        """
-        Copy the `MinMultiCutProblemBitArraySolution`
-        
-        :return: new `MinMultiCutProblemBitArraySolution` instance with the same properties
-        :rtype: `MinMultiCutProblemBitArraySolution`
-        """
-        return self.__copy__()
-
     def copy_from(self, original)->None:
         """
         Copy all data from the original target solution

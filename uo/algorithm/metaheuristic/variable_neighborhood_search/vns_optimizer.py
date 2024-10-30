@@ -132,24 +132,6 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
             construction_tuple.additional_statistics_control
         )
 
-    def __copy__(self):
-        """
-        Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.variable_neighborhood_search.VnsOptimizer`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.variable_neighborhood_search.VnsOptimizer` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.variable_neighborhood_search.VnsOptimizer`        
-        """
-        vns_opt = deepcopy(self)
-        return vns_opt
-
-    def copy(self):
-        """
-        Copy the current instance of class :class:`~uo.algorithm.metaheuristic.variable_neighborhood_search.VnsOptimizer`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.variable_neighborhood_search.VnsOptimizer` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.variable_neighborhood_search.VnsOptimizer`        
-        """
-        return self.__copy__()
 
     @property
     def k_min(self)->int:

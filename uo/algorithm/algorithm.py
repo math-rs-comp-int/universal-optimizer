@@ -82,27 +82,6 @@ class Algorithm(Optimizer, metaclass=ABCMeta):
         self.__evaluation_best_found:int = 0
         self.__iteration_best_found:int = 0
 
-    @abstractmethod
-    def __copy__(self):
-        """
-        Internal copy of the current algorithm
-
-        :return:  new `Algorithm` instance with the same properties
-        :rtype: :class:`uo.algorithm.Algorithm`
-        """
-        alg = deepcopy(self)
-        return alg
-
-    @abstractmethod
-    def copy(self):
-        """
-        Copy the current algorithm
-
-        :return:  new `Algorithm` instance with the same properties
-        :rtype: :class:`uo.algorithm.Algorithm`
-        """
-        return self.__copy__()
-
     @Optimizer.best_solution.setter
     def best_solution(self, value:Solution)->None:
         """

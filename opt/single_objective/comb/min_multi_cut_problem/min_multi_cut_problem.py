@@ -105,25 +105,6 @@ class MinMultiCutProblem(Problem):
 
         return cls(graph=graph,source_terminal_pairs=source_terminal_pairs)
 
-    def __copy__(self)->'MinMultiCutProblem':
-        """
-        Internal copy of the `MinMultiCutProblem` problem
-
-        :return: new `MinMultiCutProblem` instance with the same properties
-        :rtype: `MinMultiCutProblem`
-        """
-        pr = deepcopy(self)
-        return pr
-
-    def copy(self)->'MinMultiCutProblem':
-        """
-        Copy the `MinMultiCutProblem` problem
-
-        :return: new `MinMultiCutProblem` instance with the same properties
-        :rtype: MinMultiCutProblem
-        """
-        return self.__copy__()
-
     @property
     def graph(self)->nx.Graph:
         """

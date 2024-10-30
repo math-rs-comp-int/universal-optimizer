@@ -75,27 +75,6 @@ class Metaheuristic(Algorithm, metaclass=ABCMeta):
             self.__random_seed:int = randrange(sys.maxsize)
         self.__additional_statistics_control:AdditionalStatisticsControl = additional_statistics_control
 
-    @abstractmethod
-    def __copy__(self):
-        """
-        Internal copy of the current metaheuristic
-
-        :return: new `Metaheuristic` instance with the same properties
-        :rtype: `Metaheuristic`
-        """
-        met = deepcopy(self)
-        return met
-
-    @abstractmethod
-    def copy(self):
-        """
-        Copy the current metaheuristic
-        
-        :return: new `Metaheuristic` instance with the same properties
-        :rtype: `Metaheuristic`
-        """
-        return self.__copy__()
-
     @property
     def finish_control(self)->FinishControl:
         """

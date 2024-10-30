@@ -128,25 +128,6 @@ class GaOptimizerGenerational(GaOptimizer):
             construction_tuple.additional_statistics_control
         )
 
-    def __copy__(self):
-        """
-        Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerGenerational`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerGenerational` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerGenerational`        
-        """
-        ga_opt = deepcopy(self)
-        return ga_opt
-
-    def copy(self):
-        """
-        Copy the current instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerGenerational`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerGenerational` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerGenerational`        
-        """
-        return self.__copy__()
-
     def init(self)->None:
         """
         Initialization of the generational GA algorithm

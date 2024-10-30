@@ -115,25 +115,6 @@ class EmOptimizer(PopulationBasedMetaheuristic, metaclass=ABCMeta):
         for _ in range(self.population_size):
             self.__current_population .append(self.solution_template.copy())
 
-    def __copy__(self):
-        """
-        Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizer`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizer` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizer`        
-        """
-        em_opt = deepcopy(self)
-        return em_opt
-
-    def copy(self):
-        """
-        Copy the current instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizer`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizer` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizer`        
-        """
-        return self.__copy__()
-
     @property
     def population_size(self)->int:
         """

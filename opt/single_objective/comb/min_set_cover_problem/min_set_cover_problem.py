@@ -107,25 +107,6 @@ class MinSetCoverProblem(Problem):
 
         return cls(universe = universe,subsets = subsets)
 
-    def __copy__(self)->'MinSetCoverProblem':
-        """
-        Internal copy of the `MinSetCoverProblem` problem
-        
-        :return: new `MinSetCoverProblem` instance with the same properties
-        :rtype: `MinSetCoverProblem`
-        """
-        pr = deepcopy(self)
-        return pr
-
-    def copy(self)->'MinSetCoverProblem':
-        """
-        Copy the `MinSetCoverProblem` problem
-        
-        :return: new `MinSetCoverProblem` instance with the same properties
-        :rtype: MinSetCoverProblem
-        """
-        return self.__copy__()
-
     @property
     def universe(self)->Set[int]:
         """

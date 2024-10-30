@@ -45,12 +45,6 @@ class SingleSolutionMetaheuristicVoid(SingleSolutionMetaheuristic):
                 additional_statistics_control=additional_statistics_control
         )
 
-    def __copy__(self):
-        return super().__copy__()
-
-    def copy(self):
-        return self.__copy__()
-
     def init(self):
         return
     

@@ -74,7 +74,6 @@ class Problem(metaclass=ABCMeta):
         self.__is_minimization:bool = is_minimization
         self.__is_multi_objective:bool = is_multi_objective
 
-    @abstractmethod
     def __copy__(self):
         """
         Internal copy of the current target problem
@@ -84,7 +83,7 @@ class Problem(metaclass=ABCMeta):
         """
         pr = deepcopy(self)
         return pr
-    @abstractmethod
+
     def copy(self):
         """
         Copy the current target problem

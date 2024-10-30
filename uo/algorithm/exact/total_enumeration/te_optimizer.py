@@ -90,25 +90,6 @@ class TeOptimizer(Algorithm):
             construction_tuple.solution_template,
             construction_tuple.output_control)
 
-    def __copy__(self):
-        """
-        Internal copy of the current total enumeration algorithm
-
-        :return: new `TotalEnumeration` instance with the same properties
-        :rtype: `TotalEnumeration`
-        """
-        tot = deepcopy(self)
-        return tot
-
-    def copy(self):
-        """
-        Copy the current total enumeration algorithm
-        
-        :return: new `TotalEnumeration` instance with the same properties
-        :rtype: `TotalEnumeration`
-        """
-        return self.__copy__()
-
     @property
     def current_solution(self)->Optional[Solution]:
         """

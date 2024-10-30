@@ -56,9 +56,6 @@ class FunctionOneVariableMaxProblemIntSolution(Solution[int,float]):
         sol.number_of_intervals = self.number_of_intervals
         return sol
 
-    def copy(self):
-        return self.__copy__()
-
     def copy_from(self, original)->None:
         """
         Copy all data from the original target solution

@@ -94,7 +94,6 @@ class Solution(Generic[R_co,A_co], metaclass=ABCMeta):
                 DistanceCalculationCacheControlStatistics[R_co](distance_calculation_cache_max_size)
         self.__representation:R_co = None
 
-    @abstractmethod
     def __copy__(self):
         """
         Internal copy of the current target solution
@@ -105,7 +104,6 @@ class Solution(Generic[R_co,A_co], metaclass=ABCMeta):
         ts = deepcopy(self)
         return ts
 
-    @abstractmethod
     def copy(self):
         """
         Copy the current target solution

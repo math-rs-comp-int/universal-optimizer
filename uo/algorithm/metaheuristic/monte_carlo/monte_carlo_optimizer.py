@@ -97,25 +97,6 @@ class MonteCarloOptimizer(SingleSolutionMetaheuristic):
             construction_tuple.additional_statistics_control
         )
 
-    def __copy__(self):
-        """
-        Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.variable_neighborhood_search.MonteCarloOptimizer`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.variable_neighborhood_search.MonteCarloOptimizer` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.variable_neighborhood_search.MonteCarloOptimizer`        
-        """
-        mc_opt:'MonteCarloOptimizer' = deepcopy(self)
-        return mc_opt
-
-    def copy(self):
-        """
-        Copy the current instance of class :class:`~uo.algorithm.metaheuristic.variable_neighborhood_search.MonteCarloOptimizer`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.variable_neighborhood_search.MonteCarloOptimizer` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.variable_neighborhood_search.MonteCarloOptimizer`        
-        """
-        return self.__copy__()
-
     def init(self)->None:
         """
         Initialization of the MonteCarlo algorithm

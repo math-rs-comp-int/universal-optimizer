@@ -54,7 +54,6 @@ class Optimizer(metaclass=ABCMeta):
         self.__best_solution:Optional[Solution] = None
         self.__time_when_best_found:Optional[float] = None
 
-    @abstractmethod
     def __copy__(self):
         """
         Internal copy of the current optimizer
@@ -65,7 +64,6 @@ class Optimizer(metaclass=ABCMeta):
         opt = deepcopy(self)
         return opt
 
-    @abstractmethod
     def copy(self):
         """
         Copy the current optimizer

@@ -69,27 +69,6 @@ class SingleSolutionMetaheuristic(Metaheuristic, metaclass=ABCMeta):
                 additional_statistics_control=additional_statistics_control)
         self.__current_solution:Optional[Solution] =  None
 
-    @abstractmethod
-    def __copy__(self):
-        """
-        Internal copy of the current single solution metaheuristic
-
-        :return: new `SingleSolutionMetaheuristic` instance with the same properties
-        :rtype: `SingleSolutionMetaheuristic`
-        """
-        met = deepcopy(self)
-        return met
-
-    @abstractmethod
-    def copy(self):
-        """
-        Copy the current single solution metaheuristic
-        
-        :return: new `SingleSolutionMetaheuristic` instance with the same properties
-        :rtype: `SingleSolutionMetaheuristic`
-        """
-        return self.__copy__()
-
     @property
     def current_solution(self)->Optional[Solution]:
         """

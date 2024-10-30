@@ -26,12 +26,6 @@ class OptimizerVoid(Optimizer):
                     name=name,
                     output_control=output_control)
 
-    def __copy__(self):
-        return super().__copy__()
-
-    def copy(self):
-        return self.__copy__()
-
     def init(self):
         return
 

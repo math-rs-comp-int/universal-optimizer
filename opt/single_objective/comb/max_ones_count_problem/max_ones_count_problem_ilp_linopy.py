@@ -101,25 +101,6 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolver(Optimizer):
             construction_params.output_control, 
             construction_params.problem)
 
-    def __copy__(self):
-        """
-        Internal copy of the current algorithm
-
-        :return:  new `MaxOnesCountProblemIntegerLinearProgrammingSolver` instance with the same properties
-        :rtype: :class:`MaxOnesCountProblemIntegerLinearProgrammingSolver`
-        """
-        alg = deepcopy(self)
-        return alg
-
-    def copy(self):
-        """
-        Copy the current algorithm
-
-        :return:  new `MaxOnesCountProblemIntegerLinearProgrammingSolver` instance with the same properties
-        :rtype: :class:``MaxOnesCountProblemIntegerLinearProgrammingSolver``
-        """
-        return self.__copy__()
-
     @property
     def model(self)->Model:
         """
