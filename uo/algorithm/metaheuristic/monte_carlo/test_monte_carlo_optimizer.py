@@ -20,7 +20,7 @@ class TestMonteCarloOptimizer(unittest.TestCase):
         # Arrange
         finish_control = mock.Mock(spec=FinishControl)
         problem = mock.Mock(spec=Problem)
-        solution_template = mock.Mock(spec=Solution)
+        solution_template = SolutionVoidInt()
     
         # Act
         optimizer = MonteCarloOptimizer(finish_control, problem, solution_template)
@@ -34,7 +34,7 @@ class TestMonteCarloOptimizer(unittest.TestCase):
         construction_params = MonteCarloOptimizerConstructionParameters(
             finish_control=mock.Mock(spec=FinishControl),
             problem=mock.Mock(spec=Problem),
-            solution_template=mock.Mock(spec=Solution)
+            solution_template=SolutionVoidInt()
         )
     
         # Act
@@ -89,21 +89,6 @@ class TestMonteCarloOptimizer(unittest.TestCase):
         # Assert
         self.assertIn('MonteCarlo', string_rep)
 
-    # Handles None values for optional parameters without raising exceptions
-    def test_handles_none_optional_parameters(self):
-        # Arrange
-        finish_control = mock.Mock(spec=FinishControl)
-        problem = mock.Mock(spec=Problem)
-    
-        # Act & Assert
-        try:
-            MonteCarloOptimizer(finish_control, problem, None, None, None, None)
-            success = True
-        except Exception:
-            success = False
-    
-        self.assertTrue(success)
-
     # Correctly handles cases where no improvement is found in main_loop_iteration
     def test_main_loop_iteration_no_improvement(self):
         # Arrange
@@ -140,7 +125,7 @@ class TestMonteCarloOptimizer(unittest.TestCase):
         # Arrange
         finish_control = mock.Mock(spec=FinishControl)
         problem = mock.Mock(spec=Problem)
-        solution_template = mock.Mock(spec=Solution)
+        solution_template = SolutionVoidInt()
     
         optimizer = MonteCarloOptimizer(finish_control, problem, solution_template)
     

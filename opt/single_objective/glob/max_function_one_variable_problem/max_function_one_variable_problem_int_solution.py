@@ -58,7 +58,13 @@ class FunctionOneVariableMaxProblemIntSolution(Solution[int,float]):
 
     def copy(self):
         return self.__copy__()
-        
+
+    def copy_from(self, original)->None:
+        """
+        Copy all data from the original target solution
+        """
+        super().copy_from(original)
+                
     @property
     def domain_from(self)->float:
         return self.__domain_from    

@@ -79,7 +79,7 @@ class MonteCarloOptimizer(SingleSolutionMetaheuristic):
                 output_control=output_control, 
                 problem=problem,
                 solution_template=solution_template)
-        self.current_solution.copy_from(self.solution_template)
+        self.current_solution = self.solution_template.copy()
 
     @classmethod
     def from_construction_tuple(cls, construction_tuple:MonteCarloOptimizerConstructionParameters):

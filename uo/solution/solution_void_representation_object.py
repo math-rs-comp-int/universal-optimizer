@@ -42,6 +42,9 @@ class SolutionVoidIntObject(Solution[object, str]):
     def copy(self):
         return self.__copy__()
 
+    def copy_from(self, original: Solution) -> None:
+        return super().copy_from(original)
+    
     def argument(self, representation:object)->str:
         return str(representation)
 

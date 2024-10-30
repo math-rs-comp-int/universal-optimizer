@@ -69,6 +69,9 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolution(SolutionVoidIntObject)
     def string_representation(self):
         return str(self.__sol)    
 
+    def copy_from(self, original: Solution) -> None:
+        return super().copy_from(original)
+    
 class MaxOnesCountProblemIntegerLinearProgrammingSolver(Optimizer):
 
     def __init__(self, output_control:OutputControl=None,  problem:MaxOnesCountProblem=None)->None:
