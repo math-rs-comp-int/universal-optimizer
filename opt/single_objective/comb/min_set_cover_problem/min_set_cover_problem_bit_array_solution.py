@@ -19,7 +19,7 @@ from random import random
 import random as rnd
 import numpy as np
 
-from bitstring import Bits, BitArray, BitStream, pack
+from bitstring import BitArray
 
 from uo.problem.problem import Problem
 from uo.solution.quality_of_solution import QualityOfSolution

@@ -18,7 +18,7 @@ from opt.single_objective.glob.max_function_one_variable_problem.max_function_on
 
 def main():
         problem_to_solve:MaxFunctionOneVariableMaxProblem = MaxFunctionOneVariableMaxProblem.from_input_file(
-                input_file_path='./opt/single_objective/glob/function_one_variable_max_problem/inputs/(7-x2)[-3,3].txt',
+                input_file_path='./opt/single_objective/glob/max_function_one_variable_problem/inputs/(7-x2)[-3,3].txt',
                 input_format='txt')
         print('Problem: {}'.format(problem_to_solve))            
         finish:FinishControl = FinishControl(criteria='evaluations & seconds', evaluations_max=5000, seconds_max=10)
@@ -29,9 +29,9 @@ def main():
         solution.evaluate(problem_to_solve)           
         print('Solution: {}'.format(solution))
         vns_shaking_support:VnsShakingSupportStandardBitArray[str] = \
-                VnsShakingSupportStandardBitArray[str](solution.bit_array_len)
+                VnsShakingSupportStandardBitArray[str](solution.representation.len)
         vns_ls_support:VnsLocalSearchSupportStandardBestImprovementBitArray[str] = \
-                VnsLocalSearchSupportStandardBestImprovementBitArray[str](solution.bit_array_len)
+                VnsLocalSearchSupportStandardBestImprovementBitArray[str](solution.representation.len)
         vns_construction_params:VnsOptimizerConstructionParameters = VnsOptimizerConstructionParameters()
         vns_construction_params.problem = problem_to_solve
         vns_construction_params.solution_template = solution

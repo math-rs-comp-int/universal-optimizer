@@ -167,7 +167,9 @@ class GaOptimizerGenerational(GaOptimizer):
         else:
             l_lim:int = n_e
         self.write_output_values_if_needed("before_step_in_iteration", "crossover")
-        new_population:list[Solution] = [self.solution_template.copy() for _ in range(self.population_size)]
+        new_population:list[Solution] = []
+        for _ in range(self.population_size):
+            new_population.append(self.solution_template.copy())
         for i in range(l_lim):
             new_population[i] = self.current_population[i]
         indices_for_selection:list[int] = [sel_ind for sel_ind in range(l_lim, self.population_size)]

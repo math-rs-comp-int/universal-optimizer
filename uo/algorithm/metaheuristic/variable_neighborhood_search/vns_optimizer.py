@@ -176,7 +176,7 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
         Initialization of the VNS algorithm
         """
         self.__k_current = self.k_min
-        self.current_solution = self.solution_template.copy()
+        self.current_solution.copy_from(self.solution_template)
         self.current_solution.init_random(self.problem)
         self.evaluation = 1
         self.current_solution.evaluate(self.problem)

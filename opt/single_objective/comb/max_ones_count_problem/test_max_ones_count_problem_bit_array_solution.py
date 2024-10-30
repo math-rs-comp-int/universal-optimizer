@@ -225,6 +225,21 @@ class TestMaxOnesCountProblemBitArraySolution(unittest.TestCase):
         self.assertEqual(solution.objective_values, copy_solution.objective_values)
         self.assertEqual(solution.is_feasible, copy_solution.is_feasible)
 
+    # Call the copy() method and verify that the returned MaxOnesCountProblemBitArraySolution instance is a deep copy of the original instance.
+    def test_copy_from_method_returns_deep_copy(self):
+        # Arrange
+        solution = MaxOnesCountProblemBitArraySolution()
+        # Act
+        copy_solution = MaxOnesCountProblemBitArraySolution() 
+        copy_solution.copy_from(solution)
+        # Assert
+        self.assertIsNot(solution, copy_solution)
+        self.assertEqual(solution.fitness_value, copy_solution.fitness_value)
+        self.assertEqual(solution.fitness_values, copy_solution.fitness_values)
+        self.assertEqual(solution.objective_value, copy_solution.objective_value)
+        self.assertEqual(solution.objective_values, copy_solution.objective_values)
+        self.assertEqual(solution.is_feasible, copy_solution.is_feasible)
+        
     # Call the representation_distance_directly() method with two string representations of BitArray instances that have different lengths and verify that the method raises a ValueError.
     def test_representation_distance_directly_raises_value_error(self):
         # Arrange

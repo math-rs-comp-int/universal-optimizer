@@ -98,7 +98,9 @@ class GaOptimizer(PopulationBasedMetaheuristic, metaclass=ABCMeta):
         self.__ga_selection = ga_selection 
         self.__population_size:int = population_size
         self.__elite_count:int = elite_count
-        self.__current_population = [self.solution_template.copy() for _ in range(self.population_size)]
+        self.__current_population = []
+        for _ in range(self.population_size):
+            self.__current_population.append(self.solution_template.copy()) 
 
     def __copy__(self):
         """

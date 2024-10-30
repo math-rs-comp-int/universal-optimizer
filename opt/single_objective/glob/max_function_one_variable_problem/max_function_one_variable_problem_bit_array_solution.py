@@ -15,7 +15,7 @@ from random import choice
 from random import random
 from random import randint
 
-from bitstring import Bits, BitArray, BitStream, pack
+from bitstring import BitArray
 
 from uo.problem.problem import Problem
 from uo.solution.quality_of_solution import QualityOfSolution
@@ -54,7 +54,7 @@ class FunctionOneVariableMaxProblemBitArraySolution(Solution[BitArray,float]):
         self.__domain_from:float|int = domain_from
         self.__domain_to:float|int = domain_to
         self.__number_of_intervals:int = number_of_intervals
-        self.__bit_array_len:int = int(math.log2(self.number_of_intervals)) + 1
+        self.representation = BitArray(length=int(math.log2(self.number_of_intervals)) + 1)
 
     def __copy__(self):
         sol = super().__copy__()
@@ -65,6 +65,15 @@ class FunctionOneVariableMaxProblemBitArraySolution(Solution[BitArray,float]):
 
     def copy(self):
         return self.__copy__()
+    def copy_from(self, original)->None:
+        """
+        Copy all data from the original target solution
+        """
+        super().copy_from(original)
+        if original.representation is not None:
+            self.representation = BitArray(bin=self.representation.bin)
+        else:
+            self.representation = None
         
     @property
     def domain_from(self)->float:
@@ -90,10 +99,6 @@ class FunctionOneVariableMaxProblemBitArraySolution(Solution[BitArray,float]):
     def number_of_intervals(self)->int:
         return self.__number_of_intervals    
 
-    @property
-    def bit_array_len(self)->int:
-        return self.__bit_array_len    
-
     @number_of_intervals.setter
     def number_of_intervals(self, value:int)->None:
         if not isinstance(value, int):
@@ -114,21 +119,22 @@ class FunctionOneVariableMaxProblemBitArraySolution(Solution[BitArray,float]):
         return x
     
     def init_random(self, problem:MaxFunctionOneVariableMaxProblem)->None:
-        
-        self.representation = BitArray(length=self.bit_array_len)
-        for i in range(self.__bit_array_len):
+        b_l:int = len(self.representation.b)
+        for i in range(b_l):
             if random() > 0.5:
-                self.representation[i] = 1 
+                self.representation[i] = True 
             else:
-                self.representation[i] = 0
+                self.representation[i] = False
         #self.representation = self.obtain_feasible_representation(problem)
 
     def init_from(self, representation:BitArray, problem:MaxFunctionOneVariableMaxProblem)->None:
         if not isinstance(representation, BitArray):
             raise TypeError('Parameter \'representation\' must have type \'BitArray\'.')
+        if representation.len !=self.representation.len:
+            raise ValueError('Representation to be assigned have wrong length.')
         self.representation = BitArray (representation.bin)
 
-    def calculate_quality_directly(self, representation:int, problem:MaxFunctionOneVariableMaxProblem)->QualityOfSolution:
+    def calculate_quality_directly(self, representation:BitArray, problem:MaxFunctionOneVariableMaxProblem)->QualityOfSolution:
         arg:float = self.argument(representation) 
         res:float = eval(problem.expression, {"x":arg}) 
         return QualityOfSolution(res, None, res, None, True)

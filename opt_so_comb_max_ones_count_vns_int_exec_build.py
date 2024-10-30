@@ -191,8 +191,10 @@ class MaxOnesCountProblemIntSolutionVnsLocalSearchSupport(VnsLocalSearchSupport[
         if k < 1:
             return False
         # ls_bi for k==1
-        start_sol:MaxOnesCountProblemIntSolution = solution.copy()
-        best_sol:MaxOnesCountProblemIntSolution = solution.copy()
+        start_sol:MaxOnesCountProblemIntSolution = MaxOnesCountProblemIntSolution()
+        start_sol.copy_from(solution)
+        best_sol:MaxOnesCountProblemIntSolution = MaxOnesCountProblemIntSolution()
+        best_sol.copy_from(solution)
         better_sol_found:bool = False
         for i in range(0, problem.dimension):
             mask:int = 1 << i
@@ -216,7 +218,8 @@ class MaxOnesCountProblemIntSolutionVnsLocalSearchSupport(VnsLocalSearchSupport[
         if k < 1:
             return False
         # ls_fi for k==1
-        start_sol:MaxOnesCountProblemIntSolution = solution.copy()
+        start_sol:MaxOnesCountProblemIntSolution = MaxOnesCountProblemIntSolution()
+        start_sol.copy_from(solution)
         for i in range(0, problem.dimension):
             mask:int = 1 << i
             solution.representation ^= mask 

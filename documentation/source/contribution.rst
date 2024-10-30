@@ -172,7 +172,7 @@ c. Contribution in solving **global** optimization problems:
 
         2. Variable Neighborhood Search method, with solution that has binary `int` representation - [VladimirFilipovic]_  
 
-        3. Entry point of the all methods for solving this problem, in file :file:`/opt/single_objective/glob/function_one_variable_max_problem/solver.py`. All parameters that governs method execution are accessible to user through command-line.  - [VladimirFilipovic]_  
+        3. Entry point of the all methods for solving this problem, in file :file:`/opt/single_objective/glob/max_function_one_variable_problem/solver.py`. All parameters that governs method execution are accessible to user through command-line.  - [VladimirFilipovic]_  
 
 Contributor List
 ----------------

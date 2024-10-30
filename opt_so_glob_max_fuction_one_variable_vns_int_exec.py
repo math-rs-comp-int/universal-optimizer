@@ -18,7 +18,7 @@ from opt.single_objective.glob.max_function_one_variable_problem.max_function_on
 
 def main():
         problem_to_solve:MaxFunctionOneVariableMaxProblem = MaxFunctionOneVariableMaxProblem.from_input_file(
-                input_file_path='./opt/single_objective/glob/function_one_variable_max_problem/inputs/(7-x2)[-3,3].txt',
+                input_file_path='./opt/single_objective/glob/max_function_one_variable_problem/inputs/(7-x2)[-3,3].txt',
                 input_format='txt')
         print('Problem: {}'.format(problem_to_solve))            
         solution:FunctionOneVariableMaxProblemIntSolution = FunctionOneVariableMaxProblemIntSolution(

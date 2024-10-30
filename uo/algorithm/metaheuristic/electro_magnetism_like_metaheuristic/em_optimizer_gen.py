@@ -136,7 +136,9 @@ class EmOptimizerGenerational(EmOptimizer):
         One iteration within main loop of the EM algorithm
         """
         self.iteration += 1
-        new_population:list[Solution] = [self.solution_template.copy() for _ in range(self.population_size)]
+        new_population:list[Solution] = []
+        for _ in range(self.population_size):
+            new_population.append(self.solution_template.copy())
         self.write_output_values_if_needed("before_step_in_iteration", "charge_calculation")
 
         self.__charges = []

@@ -5,8 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Pyt: Curr File 1CP GA BA Gen",
-            "type": "python",
+            "name": "Py: Curr File 1CP GA BA Gen",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -44,8 +44,8 @@
                 ]        
         },
         {
-            "name": "Pyt: Curr File 1CP GA BA SS",
-            "type": "python",
+            "name": "Py: Curr File 1CP GA BA SS",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -83,8 +83,8 @@
                 ]        
         },
         {
-            "name": "Pyt: Curr File 1CP VNS BA",
-            "type": "python",
+            "name": "Py: Curr File 1CP VNS BA",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -118,8 +118,8 @@
                 ]        
         },
         {
-            "name": "Pyt: Curr File 1CP VNS I",
-            "type": "python",
+            "name": "Py: Curr File 1CP VNS I",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -153,8 +153,8 @@
                 ]        
         },
         {
-            "name": "Pyt: Curr File 1CP TE BA",
-            "type": "python",
+            "name": "Py: Curr File 1CP TE BA",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -172,8 +172,8 @@
                 ]        
         },
         {
-            "name": "Pyt: Curr File 1CP ILP",
-            "type": "python",
+            "name": "Py: Curr File 1CP ILP",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -190,8 +190,8 @@
                 ]        
         },
         {
-            "name": "Pyt: Curr File F1V VNS BA",
-            "type": "python",
+            "name": "Py: Curr File F1V VNS BA",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -226,8 +226,8 @@
                 ]        
         },
         {
-            "name": "Pyt: Curr File F1V VNS I",
-            "type": "python",
+            "name": "Py: Curr File F1V VNS I",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",

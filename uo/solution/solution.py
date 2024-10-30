@@ -120,7 +120,7 @@ class Solution(Generic[R_co,A_co], metaclass=ABCMeta):
             raise ValueError('Solution representation should not be None.')
         return self.representation
 
-
+    @abstractmethod
     def copy_from(self, original:'Solution')->None:
         """
         Copy all data from the original target solution

@@ -111,7 +111,10 @@ class EmOptimizer(PopulationBasedMetaheuristic, metaclass=ABCMeta):
         self.__em_mutation_support:EmMutationSupport = em_mutation_support
         self.__em_direction_support:EmDirectionSupport = em_direction_support
         self.__population_size:int = population_size
-        self.__current_population = [self.solution_template.copy() for _ in range(self.population_size)]
+        self.__current_population = []
+        for _ in range(self.population_size):
+            self.__current_population .append(self.solution_template.copy())
+
     def __copy__(self):
         """
         Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizer`

@@ -83,8 +83,13 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
             # collect positions for inversion from indexes
             positions:list[int] = indexes.current_state()
             # invert and compare, switch of new is better
-            for pos in positions:
-                solution.representation.invert(pos)
+            mask:BitArray = BitArray(length=solution.representation.len)
+            for i in positions:
+                partial_mask = BitArray(length=solution.representation.len)
+                partial_mask[-1] = True
+                partial_mask.ror(i)
+                mask |= partial_mask
+            solution.representation ^= mask 
             if optimizer.should_finish():
                 solution.copy_from(start_sol)
                 return False
@@ -95,8 +100,13 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
             if solution.is_better(best_sol, problem):
                 better_sol_found = True
                 best_sol.copy_from(solution)
-            for pos in positions:
-                solution.representation.invert(pos)
+            mask:BitArray = BitArray(length=solution.representation.len)
+            for i in positions:
+                partial_mask = BitArray(length=solution.representation.len)
+                partial_mask[-1] = True
+                partial_mask.ror(i)
+                mask |= partial_mask
+            solution.representation ^= mask 
             # increment indexes and set in_loop according to the state
             in_loop = indexes.progress()
         if better_sol_found:

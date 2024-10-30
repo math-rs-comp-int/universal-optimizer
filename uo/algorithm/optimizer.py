@@ -163,7 +163,7 @@ class Optimizer(metaclass=ABCMeta):
         """
         if not isinstance(value, Solution):
             raise TypeError('Parameter \'best_solution\' must have type \'Solution\'.')
-        self.__best_solution = value.copy()
+        self.__best_solution.copy_from(value)
         self.__time_when_best_found = (datetime.now() - self.execution_started).total_seconds()
 
     @property

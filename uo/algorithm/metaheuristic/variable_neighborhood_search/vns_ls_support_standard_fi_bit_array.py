@@ -100,8 +100,13 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
             optimizer.write_output_values_if_needed("after_evaluation", "a_e")
             if solution.is_better(start_sol, problem):
                 return True
-            for pos in positions:
-                solution.representation.invert(pos)
+            mask:BitArray = BitArray(length=solution.representation.len)
+            for i in positions:
+                partial_mask = BitArray(length=solution.representation.len)
+                partial_mask[-1] = True
+                partial_mask.ror(i)
+                mask |= partial_mask
+            solution.representation ^= mask 
             # increment indexes and set in_loop accordingly
             in_loop = indexes.progress()
         solution.copy_from(start_sol)
