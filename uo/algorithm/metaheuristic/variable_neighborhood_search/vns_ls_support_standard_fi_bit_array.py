@@ -16,7 +16,6 @@ sys.path.append(directory.parent.parent.parent)
 
 import math
 
-from copy import deepcopy
 from random import choice
 
 from typing import TypeVar
@@ -40,16 +39,6 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
         """
         super().__init__(dimension=dimension)
 
-    def __copy__(self):
-        """
-        Internal copy of the `VnsLocalSearchSupportStandardFirstImprovementBitArray`
-
-        :return: new `VnsLocalSearchSupportStandardFirstImprovementBitArray` instance with the same properties
-        :rtype: `VnsLocalSearchSupportStandardFirstImprovementBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `VnsLocalSearchSupportStandardFirstImprovementBitArray` instance
@@ -57,7 +46,9 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
         :return: new `VnsLocalSearchSupportStandardFirstImprovementBitArray` instance with the same properties
         :rtype: `VnsLocalSearchSupportStandardFirstImprovementBitArray`
         """
-        return self.__copy__()
+        obj:VnsLocalSearchSupportStandardFirstImprovementBitArray = VnsLocalSearchSupportStandardFirstImprovementBitArray(
+                        self.dimension)
+        return obj
 
     def local_search(self, k:int, problem:Problem, solution:Solution, 
             optimizer: SingleSolutionMetaheuristic)->bool:
@@ -76,7 +67,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
         if k < optimizer.k_min or k > optimizer.k_max:
             return False
         start_sol:Solution = solution.copy()
-        start_sol.copy_from(solution)
+        start_sol.borrow_from(solution)
         # initialize indexes
         dim:int = int(math.ceil(math.log2(self.dimension)))
         indexes:ComplexCounterUniformAscending = ComplexCounterUniformAscending(k, dim)
@@ -93,7 +84,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
                 mask |= partial_mask
             solution.representation ^= mask 
             if optimizer.should_finish():
-                solution.copy_from(start_sol)
+                solution.borrow_from(start_sol)
                 return False
             optimizer.write_output_values_if_needed("before_evaluation", "b_e")
             optimizer.evaluation += 1
@@ -110,7 +101,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
             solution.representation ^= mask 
             # increment indexes and set in_loop accordingly
             in_loop = indexes.progress()
-        solution.copy_from(start_sol)
+        solution.borrow_from(start_sol)
         return False
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 

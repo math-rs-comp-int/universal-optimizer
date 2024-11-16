@@ -2,8 +2,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-
 from uo.problem.problem import Problem 
 from uo.problem.problem_void_min_so import ProblemVoidMinSO 
 

@@ -13,8 +13,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 from random import random
 
@@ -112,6 +110,25 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
         # current value of the vns parameter k
         self.__k_current:Optional[int] = None
 
+    def copy(self):
+        """
+        Copy the `VnsOptimizer`
+        
+        :return: new `VnsOptimizer` instance with the same properties
+        :rtype: `VnsOptimizer`
+        """        
+        obj:VnsOptimizer = VnsOptimizer(self.vns_shaking_support,
+                                self.vns_ls_support,
+                                self.k_min,
+                                self.k_max,
+                                self.finish_control,
+                                self.problem,
+                                self.solution_template,
+                                self.output_control,
+                                self.random_seed,
+                                self.additional_statistics_control)
+        return obj
+    
     @classmethod
     def from_construction_tuple(cls, construction_tuple:VnsOptimizerConstructionParameters):
         """
@@ -132,6 +149,25 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
             construction_tuple.additional_statistics_control
         )
 
+    @property
+    def vns_shaking_support(self)->VnsShakingSupport:
+        """
+        Property getter for the shaking support` in VNS
+
+        :return: shaking support in VNS
+        :rtype: `VnsShakingSupport`
+        """
+        return self.__vns_shaking_support
+
+    @property
+    def vns_ls_support(self)->VnsLocalSearchSupport:
+        """
+        Property getter for the local search support in VNS
+
+        :return: local search support  in VNS
+        :rtype: `VnsLocalSearchSupport`
+        """
+        return self.__vns_ls_support
 
     @property
     def k_min(self)->int:
@@ -159,7 +195,7 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
         """
         self.__k_current = self.k_min
         self.current_solution = self.solution_template.copy()
-        self.current_solution.copy_from(self.solution_template)
+        self.current_solution.borrow_from(self.solution_template)
         self.current_solution.init_random(self.problem)
         self.evaluation = 1
         self.current_solution.evaluate(self.problem)

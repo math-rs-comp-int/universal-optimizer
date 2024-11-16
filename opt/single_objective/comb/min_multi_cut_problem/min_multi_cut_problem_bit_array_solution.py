@@ -60,15 +60,16 @@ class MinMultiCutProblemBitArraySolution(Solution[BitArray,str]):
             sol.representation = None
         return sol
 
-    def copy_from(self, original)->None:
+    def borrow_from(self, original)->None:
         """
         Copy all data from the original target solution
         """
-        super().copy_from(original)
+        super().borrow_from(original)
         if original.representation is not None:
             self.representation = BitArray(bin=self.representation.bin)
         else:
             self.representation = None
+        original = None
         
     def argument(self, representation:BitArray)->str:
         """

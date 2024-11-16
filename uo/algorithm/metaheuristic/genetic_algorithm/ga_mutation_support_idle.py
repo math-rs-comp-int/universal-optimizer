@@ -20,7 +20,6 @@ from typing import NamedTuple
 from typing import TypeVar
 from typing import Generic
 from typing import Optional
-from copy import deepcopy
 from random import choice, random, randint
 
 from bitstring import BitArray
@@ -35,16 +34,6 @@ A_co = TypeVar("A_co", covariant=True)
 
 class GaMutationSupportIdle(GaMutationSupport[R_co,A_co]):
 
-    def __copy__(self):
-        """
-        Internal copy of the `GaMutationSupportIdle`
-
-        :return: new `GaMutationSupportIdle` instance with the same properties
-        :rtype: `GaMutationSupportIdle`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `GaMutationSupportIdle` instance
@@ -52,7 +41,8 @@ class GaMutationSupportIdle(GaMutationSupport[R_co,A_co]):
         :return: new `GaMutationSupportIdle` instance with the same properties
         :rtype: `GaMutationSupportIdle`
         """
-        return self.__copy__()
+        obj:'GaMutationSupportIdle' = GaMutationSupportIdle()
+        return obj
 
     def mutation(self, problem:Problem, solution:Solution, 
                 optimizer:PopulationBasedMetaheuristic)->None:

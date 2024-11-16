@@ -15,7 +15,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 from random import randint
 
@@ -35,16 +34,6 @@ A_co = TypeVar("A_co", covariant=True)
 
 class VnsShakingSupportIdle(VnsShakingSupport[R_co,A_co]):
     
-    def __copy__(self):
-        """
-        Internal copy of the `VnsShakingSupportIdle`
-
-        :return: new `VnsShakingSupportIdle` instance with the same properties
-        :rtype: VnsShakingSupportIdle
-        """
-        sup = deepcopy(self)
-        return sup
-
     def copy(self):
         """
         Copy the `VnsShakingSupportIdle`
@@ -52,7 +41,8 @@ class VnsShakingSupportIdle(VnsShakingSupport[R_co,A_co]):
         :return: new `VnsShakingSupportIdle` instance with the same properties
         :rtype: `VnsShakingSupportIdle`
         """        
-        return self.__copy__()
+        obj:VnsShakingSupportIdle = VnsShakingSupportIdle(self.dimension)
+        return obj
         
     def shaking(self, k:int, problem:Problem, solution:Solution, 
             optimizer:SingleSolutionMetaheuristic)->bool:

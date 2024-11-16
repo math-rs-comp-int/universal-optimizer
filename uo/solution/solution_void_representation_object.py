@@ -7,8 +7,6 @@ import sys
 directory = Path(__file__).resolve()
 sys.path.append(directory.parent)
 
-from copy import deepcopy
-
 from uo.utils.logger import logger
 
 from uo.problem.problem import Problem
@@ -19,7 +17,7 @@ from uo.solution.quality_of_solution import QualityOfSolution
 from uo.algorithm.optimizer import Optimizer
 from uo.algorithm.output_control import OutputControl
 
-class SolutionVoidIntObject(Solution[object, str]):
+class SolutionVoidObject(Solution[object, str]):
     def __init__(self, random_seed=None, 
                 fitness_value=0, 
                 fitness_values=None, 
@@ -35,8 +33,22 @@ class SolutionVoidIntObject(Solution[object, str]):
         evaluation_cache_is_used, evaluation_cache_max_size, 
         distance_calculation_cache_is_used, distance_calculation_cache_max_size)
 
-    def copy_from(self, original: Solution) -> None:
-        return super().copy_from(original)
+    def copy(self)->'SolutionVoidObject':
+        obj:SolutionVoidObject = SolutionVoidObject(self.random_seed,
+                                        self.fitness_value,
+                                        self.objective_value,
+                                        self.is_feasible)
+        obj.evaluation_cache_cs = None
+        if self.evaluation_cache_cs is not None:
+            obj.evaluation_cache_cs = self.evaluation_cache_cs.copy()
+        obj.representation_distance_cache_cs = None
+        if self.representation_distance_cache_cs is not None:
+            obj.representation_distance_cache_cs = self.representation_distance_cache_cs.copy()
+        return obj
+
+    def borrow_from(self, original: Solution) -> None:
+        super().borrow_from(original)
+        original = None
     
     def argument(self, representation:object)->str:
         return str(representation)

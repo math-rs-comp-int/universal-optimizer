@@ -48,8 +48,9 @@ class MaxOnesCountProblemIntSolution(Solution[int,str]):
                 distance_calculation_cache_max_size=distance_calculation_cache_max_size)
 
 
-    def copy_from(self, original: Solution) -> None:
-        return super().copy_from(original)
+    def borrow_from(self, original: Solution) -> None:
+        super().borrow_from(original)
+        original = None
         
     def obtain_feasible_representation(self, problem:Problem) -> int:
         """

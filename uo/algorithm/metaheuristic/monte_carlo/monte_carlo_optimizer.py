@@ -13,8 +13,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 from random import random
 
@@ -80,6 +78,19 @@ class MonteCarloOptimizer(SingleSolutionMetaheuristic):
                 problem=problem,
                 solution_template=solution_template)
         self.current_solution = self.solution_template.copy()
+
+    def __copy__(self):
+        """
+        Internal copy of the current instance 
+        
+        :return: new instance with the same properties
+        """
+        ga_opt:'MonteCarloOptimizer' = MonteCarloOptimizer(self.finish_control,
+                                                self.problem,
+                                                self.solution_template,
+                                                self.output_control,
+                                                self.random_seed)
+        return ga_opt    
 
     @classmethod
     def from_construction_tuple(cls, construction_tuple:MonteCarloOptimizerConstructionParameters):

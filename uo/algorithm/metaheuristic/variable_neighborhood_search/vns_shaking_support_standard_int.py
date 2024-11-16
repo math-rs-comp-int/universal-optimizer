@@ -15,7 +15,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 from random import randint
 
@@ -40,17 +39,6 @@ class VnsShakingSupportStandardInt(VnsShakingSupport[int,A_co]):
         """
         super().__init__(dimension=dimension)
 
-
-    def __copy__(self):
-        """
-        Internal copy of the `VnsShakingSupportStandardInt`
-
-        :return: new `VnsShakingSupportStandardInt` instance with the same properties
-        :rtype: VnsShakingSupportStandardInt
-        """
-        sup = deepcopy(self)
-        return sup
-
     def copy(self):
         """
         Copy the `VnsShakingSupportStandardInt`
@@ -58,7 +46,8 @@ class VnsShakingSupportStandardInt(VnsShakingSupport[int,A_co]):
         :return: new `VnsShakingSupportStandardInt` instance with the same properties
         :rtype: `VnsShakingSupportStandardInt`
         """        
-        return self.__copy__()
+        obj:VnsShakingSupportStandardInt = VnsShakingSupportStandardInt(self.dimension)
+        return obj
         
     def shaking(self, k:int, problem:Problem, solution:Solution, 
             optimizer:SingleSolutionMetaheuristic)->bool:

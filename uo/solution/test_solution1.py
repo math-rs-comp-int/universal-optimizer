@@ -2,8 +2,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-
 from uo.problem.problem import Problem
 from uo.problem.problem_void_min_so import ProblemVoidMinSO
 
@@ -72,7 +70,7 @@ class TestSolution(unittest.TestCase):
         self.assertFalse(solution.is_feasible)
         self.assertEqual(solution.representation, "representation")
 
-    # The copy, copy_from, argument, string_representation, init_random, native_representation, init_from, calculate_quality_directly, calculate_quality, representation_distance_directly, representation_distance, string_rep, __str__, __repr__, and __format__ methods can be called and return expected results
+    # The copy, borrow_from, argument, string_representation, init_random, native_representation, init_from, calculate_quality_directly, calculate_quality, representation_distance_directly, representation_distance, string_rep, __str__, __repr__, and __format__ methods can be called and return expected results
     def test_method_calls_and_results(self):
         # Arrange
         EvaluationCacheControlStatistics._instances = {} # reset singleton

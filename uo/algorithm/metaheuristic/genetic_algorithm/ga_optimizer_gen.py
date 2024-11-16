@@ -12,8 +12,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 
 from typing import Optional
@@ -107,6 +105,26 @@ class GaOptimizerGenerational(GaOptimizer):
                 elite_count=elite_count
         )
 
+    def copy(self):
+        """
+        Copy the `GaOptimizerGenerational` instance
+
+        :return: new `GaOptimizerGenerational` instance with the same properties
+        :rtype: `GaOptimizerGenerational`
+        """
+        obj:'GaOptimizerGenerational' = GaOptimizerGenerational(self.ga_crossover_support,
+                                            self.ga_mutation_support,
+                                            self.ga_selection,
+                                            self.population_size,
+                                            self.elite_count,
+                                            self.finish_control,
+                                            self.problem,
+                                            self.solution_template,
+                                            self.output_control,
+                                            self.random_seed,
+                                            self.additional_statistics_control)
+        return obj
+    
     @classmethod
     def from_construction_tuple(cls, construction_tuple:GaOptimizerGenerationalConstructionParameters):
         """

@@ -12,8 +12,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 
 from typing import Optional
@@ -133,7 +131,17 @@ class GaOptimizerSteadyState(GaOptimizer):
         :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState` with the same properties
         :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`        
         """
-        ga_opt = deepcopy(self)
+        ga_opt:'GaOptimizerSteadyState' = GaOptimizerSteadyState( self.ga_crossover_support,
+                                                self.ga_mutation_support,
+                                                self.ga_selection,
+                                                self.population_size,
+                                                self.elite_count,
+                                                self.finish_control,
+                                                self.problem,
+                                                self.solution_template,
+                                                self.output_control,
+                                                self.random_seed,
+                                                self.additional_statistics_control)
         return ga_opt
 
     def copy(self):

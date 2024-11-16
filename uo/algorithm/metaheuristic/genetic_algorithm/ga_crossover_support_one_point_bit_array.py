@@ -14,9 +14,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 
 from typing import TypeVar
-
-
-from copy import deepcopy
 from random import choice, random, randint
 
 from bitstring import BitArray
@@ -46,16 +43,6 @@ class GaCrossoverSupportOnePointBitArray(GaCrossoverSupport[BitArray,A_co]):
         """
         return self.__crossover_probability    
 
-    def __copy__(self):
-        """
-        Internal copy of the `GaCrossoverSupportOnePointBitArray`
-
-        :return: new `GaCrossoverSupportOnePointBitArray` instance with the same properties
-        :rtype: `GaCrossoverSupportOnePointBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `GaCrossoverSupportOnePointBitArray` instance
@@ -63,7 +50,8 @@ class GaCrossoverSupportOnePointBitArray(GaCrossoverSupport[BitArray,A_co]):
         :return: new `GaCrossoverSupportOnePointBitArray` instance with the same properties
         :rtype: `GaCrossoverSupportOnePointBitArray`
         """
-        return self.__copy__()
+        obj:'GaCrossoverSupportOnePointBitArray' = GaCrossoverSupportOnePointBitArray()
+        return obj
 
     def crossover(self, problem:Problem, solution1:Solution, solution2:Solution,
                 child1:Solution, child2:Solution, optimizer:PopulationBasedMetaheuristic) -> None:
@@ -94,8 +82,8 @@ class GaCrossoverSupportOnePointBitArray(GaCrossoverSupport[BitArray,A_co]):
             child1.evaluate(problem)
             child2.evaluate(problem)        
         else:
-            child1.copy_from(solution1)
-            child2.copy_from(solution2)
+            child1.borrow_from(solution1)
+            child2.borrow_from(solution2)
         
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 

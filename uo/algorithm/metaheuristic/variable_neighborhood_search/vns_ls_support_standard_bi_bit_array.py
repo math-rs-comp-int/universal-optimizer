@@ -14,7 +14,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 
 from typing import TypeVar
@@ -38,16 +37,6 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
         """
         super().__init__(dimension=dimension)
 
-    def __copy__(self):
-        """
-        Internal copy of the `VnsLocalSearchSupportStandardBestImprovementBitArray`
-
-        :return: new `VnsLocalSearchSupportStandardBestImprovementBitArray` instance with the same properties
-        :rtype: `VnsLocalSearchSupportStandardBestImprovementBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `VnsLocalSearchSupportStandardBestImprovementBitArray` instance
@@ -55,7 +44,9 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
         :return: new `VnsLocalSearchSupportStandardBestImprovementBitArray` instance with the same properties
         :rtype: `VnsLocalSearchSupportStandardBestImprovementBitArray`
         """
-        return self.__copy__()
+        obj:'VnsLocalSearchSupportStandardBestImprovementBitArray' = VnsLocalSearchSupportStandardBestImprovementBitArray(
+                        self.dimension )
+        return obj
 
     def local_search(self, k:int, problem:Problem, solution:Solution, 
             optimizer: SingleSolutionMetaheuristic)->bool:
@@ -91,7 +82,7 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
                 mask |= partial_mask
             solution.representation ^= mask 
             if optimizer.should_finish():
-                solution.copy_from(start_sol)
+                solution.borrow_from(start_sol)
                 return False
             optimizer.write_output_values_if_needed("before_evaluation", "b_e")
             optimizer.evaluation += 1
@@ -99,7 +90,7 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
             optimizer.write_output_values_if_needed("after_evaluation", "a_e")
             if solution.is_better(best_sol, problem):
                 better_sol_found = True
-                best_sol.copy_from(solution)
+                best_sol.borrow_from(solution)
             mask:BitArray = BitArray(length=solution.representation.len)
             for i in positions:
                 partial_mask = BitArray(length=solution.representation.len)
@@ -110,9 +101,9 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
             # increment indexes and set in_loop according to the state
             in_loop = indexes.progress()
         if better_sol_found:
-            solution.copy_from(best_sol)
+            solution.borrow_from(best_sol)
             return True
-        solution.copy_from(start_sol)
+        solution.borrow_from(start_sol)
         return False
     
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 

@@ -15,7 +15,6 @@ sys.path.append(directory.parent.parent)
 from typing import TypeVar
 
 
-from copy import deepcopy
 from random import choice, random, randint
 
 from bitstring import BitArray
@@ -30,16 +29,6 @@ A_co = TypeVar("A_co", covariant=True)
 
 class GaCrossoverSupportIdle(GaCrossoverSupport[R_co, A_co]):
 
-    def __copy__(self):
-        """
-        Internal copy of the `GaCrossoverSupportIdle`
-
-        :return: new `GaCrossoverSupportIdle` instance with the same properties
-        :rtype: `GaCrossoverSupportIdle`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `GaCrossoverSupportIdle` instance
@@ -47,7 +36,8 @@ class GaCrossoverSupportIdle(GaCrossoverSupport[R_co, A_co]):
         :return: new `GaCrossoverSupportIdle` instance with the same properties
         :rtype: `GaCrossoverSupportIdle`
         """
-        return self.__copy__()
+        obj = GaCrossoverSupportIdle()
+        return obj
 
     def crossover(self, problem:Problem, solution1:Solution, solution2:Solution,
                 child1:Solution, child2:Solution, optimizer:PopulationBasedMetaheuristic) -> None:

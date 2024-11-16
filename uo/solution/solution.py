@@ -102,14 +102,9 @@ class Solution(Generic[R_co,A_co], metaclass=ABCMeta):
         :rtype: :class:`Solution`
         """
         raise NotImplementedError
-    
-    def obtain_feasible_representation(self, problem:Problem)->R_co:
-        if self.representation is None:
-            raise ValueError('Solution representation should not be None.')
-        return self.representation
 
     @abstractmethod
-    def copy_from(self, original:'Solution')->None:
+    def borrow_from(self, original:'Solution')->None:
         """
         Copy all data from the original target solution
         """
@@ -120,6 +115,11 @@ class Solution(Generic[R_co,A_co], metaclass=ABCMeta):
         self.__objective_values = original.__objective_values
         self.__is_feasible = original.__is_feasible
         self.__representation = original.__representation
+    
+    def obtain_feasible_representation(self, problem:Problem)->R_co:
+        if self.representation is None:
+            raise ValueError('Solution representation should not be None.')
+        return self.representation
     
     @property
     def random_seed(self)->int:

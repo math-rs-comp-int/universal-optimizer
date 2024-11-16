@@ -12,8 +12,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 
 from abc import ABCMeta, abstractmethod
