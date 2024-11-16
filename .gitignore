@@ -298,3 +298,6 @@ opt/single_objective/glob/max_function_one_variable_problem/outputs/(7-x2)\[-3,3
 /opt/single_objective/glob/max_function_one_variable_problem/outputs/(7-x2)\[-3,3\]-maxones-variable_neighborhood_search-int-max.csv
 /opt/single_objective/glob/max_function_one_variable_problem/outputs/7-x^2f-3t3-maxones-variable_neighborhood_search-int-max-2023-10-30-12-54-22.827415.csv
 /opt/single_objective/glob/max_function_one_variable_problem/outputs/7-x^2f-3t3-maxones-variable_neighborhood_search-int-max-2023-11-01-21-15-46.439376.csv
+outputs
+/opt/single_objective/comb/max_ones_count_problem/outputs/*.csv
+/opt/single_objective/comb/max_ones_count_problem/outputs
