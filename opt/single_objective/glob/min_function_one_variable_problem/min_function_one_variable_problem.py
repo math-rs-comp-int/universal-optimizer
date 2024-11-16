@@ -8,21 +8,19 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from copy import deepcopy
-
 from typing import NamedTuple
 
 from uo.utils.logger import logger
 
 from uo.problem.problem import Problem
 
-MinFunctionOneVariableMaxProblemElements = NamedTuple('MinFunctionOneVariableMaxProblemElements', 
+MinFunctionOneVariableProblemElements = NamedTuple('MinFunctionOneVariableProblemElements', 
             [('expression',str), 
             ('domain_low',float), 
             ('domain_high',float)]
         )
 
-class MinFunctionOneVariableMaxProblem(Problem):
+class MinFunctionOneVariableProblem(Problem):
     
     def __init__(self, expression:str, domain_low:float, domain_high:float)->None:
         if expression is None or expression=="":
@@ -62,16 +60,13 @@ class MinFunctionOneVariableMaxProblem(Problem):
         :param str input_file_path: path of the input file with problem data
         :param str input_format: format of the input
         """
-        params:FunctionOneVariableMaxProblemMinElements = MinFunctionOneVariableMaxProblem.__load_from_file__(input_file_path, 
+        params:'MinFunctionOneVariableProblem' = MinFunctionOneVariableProblem.__load_from_file__(input_file_path, 
                 input_format)
         return cls(expression=params.expression, domain_low=params.domain_low, domain_high=params.domain_high)
 
-    def __copy__(self):
-        pr = deepcopy(self)
-        return pr
-
     def copy(self):
-        return self.__copy__()
+        pr = MinFunctionOneVariableProblem(self.expression, self.domain_low, self.domain_high)
+        return pr
 
     @property
     def expression(self)->str:

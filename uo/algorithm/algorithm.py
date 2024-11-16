@@ -7,7 +7,6 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
-from copy import deepcopy
 from datetime import datetime
 
 from abc import ABCMeta, abstractmethod
@@ -41,8 +40,6 @@ class Algorithm(Optimizer, metaclass=ABCMeta):
     Methods:
         __init__(name: str, output_control: OutputControl, problem: Problem, solution_template: Optional[Solution] = None) -> None:
             Create a new Algorithm instance.
-        __copy__() -> Algorithm:
-            Internal copy of the current algorithm.
         copy() -> Algorithm:
             Copy the current algorithm.
         init() -> None:
@@ -81,6 +78,16 @@ class Algorithm(Optimizer, metaclass=ABCMeta):
         self.__iteration:int = 0
         self.__evaluation_best_found:int = 0
         self.__iteration_best_found:int = 0
+
+    @abstractmethod
+    def copy(self):
+        """
+        Copy the current optimizer
+
+        :return:  new `Algorithm` instance with the same properties
+        :rtype: :class:`uo.algorithm.Algorithm`
+        """
+        raise NotImplementedError
 
     @Optimizer.best_solution.setter
     def best_solution(self, value:Solution)->None:

@@ -2,7 +2,6 @@
 The :mod:`~uo.algorithm.output_control` module describes the class :class:`~uo.algorithm.OutputControl`.
 """
 
-from copy import deepcopy
 from pathlib import Path
 from typing import Optional
 directory = Path(__file__).resolve()

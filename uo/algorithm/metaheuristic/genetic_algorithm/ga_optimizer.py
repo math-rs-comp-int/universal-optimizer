@@ -102,24 +102,15 @@ class GaOptimizer(PopulationBasedMetaheuristic, metaclass=ABCMeta):
         for _ in range(self.population_size):
             self.__current_population.append(self.solution_template.copy()) 
 
-    def __copy__(self):
-        """
-        Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizer`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizer` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizer`        
-        """
-        ga_opt = deepcopy(self)
-        return ga_opt
-
+    @abstractmethod
     def copy(self):
         """
-        Copy the current instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizer`
+        Copy the current object
 
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizer` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizer`        
+        :return:  new instance with the same properties
+        :rtype: :class:`GaOptimizer`
         """
-        return self.__copy__()
+        raise NotImplementedError
 
     @property
     def elite_count(self)->int:

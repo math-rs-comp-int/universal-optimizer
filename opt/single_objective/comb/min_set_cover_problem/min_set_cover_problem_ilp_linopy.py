@@ -7,7 +7,6 @@ sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
 from dataclasses import dataclass
-from copy import deepcopy
 from datetime import datetime
 
 import xarray as xr

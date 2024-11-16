@@ -15,12 +15,10 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from abc import ABCMeta, abstractmethod
 from typing import NamedTuple
 from typing import TypeVar
 from typing import Generic
 from typing import Optional
-from copy import deepcopy
 from random import choice, random, randint
 
 from bitstring import BitArray
@@ -41,7 +39,7 @@ class GaMutationSupportIdleBitArray(GaMutationSupport[BitArray,A_co]):
         :return: new `GaMutationSupportIdleBitArray` instance with the same properties
         :rtype: `GaMutationSupportIdleBitArray`
         """
-        sol = deepcopy(self)
+        sol = GaMutationSupportIdleBitArray()
         return sol
 
     def copy(self):

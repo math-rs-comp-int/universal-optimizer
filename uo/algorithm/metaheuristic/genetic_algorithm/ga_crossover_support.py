@@ -21,7 +21,17 @@ R_co = TypeVar("R_co", covariant=True)
 A_co = TypeVar("A_co", covariant=True)
 
 class GaCrossoverSupport(Generic[R_co,A_co], metaclass=ABCMeta):
-    
+
+    @abstractmethod
+    def copy(self):
+        """
+        Copy the current object
+
+        :return:  new instance with the same properties
+        :rtype: :class:`GaCrossoverSupport`
+        """
+        raise NotImplementedError
+        
     @abstractmethod
     def crossover(self, problem:Problem, 
                 solution1:Solution[R_co,A_co], solution2:Solution[R_co,A_co], 

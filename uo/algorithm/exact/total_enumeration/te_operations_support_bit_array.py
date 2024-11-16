@@ -14,15 +14,10 @@ sys.path.append(directory)
 sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 
-from abc import ABCMeta, abstractmethod
 from typing import NamedTuple
 from typing import TypeVar
 from typing import Generic
 from typing import Optional
-
-from copy import deepcopy
-from random import choice
-from random import random
 
 from bitstring import Bits, BitArray, BitStream, pack
 
@@ -46,16 +41,6 @@ class TeOperationsSupportBitArray(TeOperationsSupport[BitArray,A_co]):
         """
         self.__bit_array_counter = None
 
-    def __copy__(self):
-        """
-        Internal copy of the `TeOperationsSupportBitArray`
-
-        :return: new `TeOperationsSupportBitArray` instance with the same properties
-        :rtype: `TeOperationsSupportBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `TeOperationsSupportBitArray` instance
@@ -63,7 +48,9 @@ class TeOperationsSupportBitArray(TeOperationsSupport[BitArray,A_co]):
         :return: new `MaxOnesCountProblemBitArraySolutionTeSupport` instance with the same properties
         :rtype: `TeOperationsSupportBitArray`
         """
-        return self.__copy__()
+        sol:'TeOperationsSupportBitArray' = TeOperationsSupportBitArray()
+        sol.__bit_array_counter = self.__bit_array_counter.copy()
+        return sol
 
     def reset(self, problem:Problem, solution:Solution, optimizer:Algorithm)->None:
         """

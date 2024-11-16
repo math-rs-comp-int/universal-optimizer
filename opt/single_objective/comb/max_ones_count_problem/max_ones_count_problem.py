@@ -13,8 +13,6 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from copy import deepcopy
-
 from uo.problem.problem import Problem
 from uo.utils.logger import logger
 
@@ -32,7 +30,6 @@ class MaxOnesCountProblem(Problem):
         from_dimension(dimension: int): Creates a new MaxOnesCountProblem instance when the dimension is specified.
         __load_from_file__(file_path: str, data_format: str) -> int: Static function that reads problem data from a file.
         from_input_file(input_file_path: str, input_format: str): Creates a new MaxOnesCountProblem instance when the input file and input format are specified.
-        __copy__() -> MaxOnesCountProblem: Internal copy of the MaxOnesCountProblem problem.
         copy() -> MaxOnesCountProblem: Copy the MaxOnesCountProblem problem.
         dimension() -> int: Property getter for the dimension of the target problem.
         string_rep(delimiter: str, indentation: int = 0, indentation_symbol: str = '', group_start: str = '{', group_end: str = '}') -> str: String representation of the MaxOnesCountProblem instance.
@@ -102,16 +99,6 @@ class MaxOnesCountProblem(Problem):
             raise ValueError('Loading from file \'{}\' produces invalid dimension'.format(input_file_path))
         return cls(dim=dimension)
 
-    def __copy__(self):
-        """
-        Internal copy of the `MaxOnesCountProblem` problem
-
-        :return: new `MaxOnesCountProblem` instance with the same properties
-        :rtype: `MaxOnesCountProblem`
-        """
-        pr = deepcopy(self)
-        return pr
-
     def copy(self):
         """
         Copy the `MaxOnesCountProblem` problem
@@ -119,7 +106,8 @@ class MaxOnesCountProblem(Problem):
         :return: new `MaxOnesCountProblem` instance with the same properties
         :rtype: MaxOnesCountProblem
         """
-        return self.__copy__()
+        pr = MaxOnesCountProblem(self.dimension)
+        return pr
 
     @property
     def dimension(self)->int:

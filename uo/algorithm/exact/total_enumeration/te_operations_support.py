@@ -23,6 +23,17 @@ A_co = TypeVar("A_co", covariant=True)
 class TeOperationsSupport(Generic[R_co,A_co], metaclass=ABCMeta):
     
     @abstractmethod
+    def copy(self):
+        """
+        Copy the current object
+
+        :return: new  instance with the same properties
+        :rtype: :class:`TeOperationsSupport`
+        """
+        raise NotImplementedError
+
+    
+    @abstractmethod
     def reset(self, problem:Problem, solution:Solution[R_co,A_co], optimizer:Algorithm)->None:
         """
         Resets internal counter of the total enumerator, so process will start over. Internal state of the solution 

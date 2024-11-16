@@ -8,8 +8,6 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from copy import deepcopy
-
 from uo.problem.problem import Problem
 from uo.utils.logger import logger
 

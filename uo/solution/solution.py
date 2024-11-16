@@ -7,7 +7,6 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
-from copy import deepcopy
 from random import random, randrange, choice
 
 from abc import ABCMeta, abstractmethod
@@ -94,25 +93,16 @@ class Solution(Generic[R_co,A_co], metaclass=ABCMeta):
                 DistanceCalculationCacheControlStatistics[R_co](distance_calculation_cache_max_size)
         self.__representation:R_co = None
 
-    def __copy__(self):
-        """
-        Internal copy of the current target solution
-
-        :return:  new :class:`uo.solution.Solution` instance with the same properties
-        :rtype: Solution
-        """
-        ts = deepcopy(self)
-        return ts
-
+    @abstractmethod
     def copy(self):
         """
-        Copy the current target solution
+        Copy the current object
 
-        :return: new :class:`uo.solution.Solution` instance with the same properties
-        :rtype: Solution
+        :return:  new instance with the same properties
+        :rtype: :class:`Solution`
         """
-        return self.__copy__()
-
+        raise NotImplementedError
+    
     def obtain_feasible_representation(self, problem:Problem)->R_co:
         if self.representation is None:
             raise ValueError('Solution representation should not be None.')

@@ -1,8 +1,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-from datetime import datetime
 from uo.problem.problem_void_min_so import ProblemVoidMinSO
 from uo.solution.solution_void_representation_int import SolutionVoidInt
 

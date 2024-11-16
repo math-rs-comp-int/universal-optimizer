@@ -15,7 +15,6 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from abc import ABCMeta, abstractmethod
 from typing import NamedTuple
 from typing import TypeVar
 from typing import Generic
@@ -57,7 +56,7 @@ class EmMutationSupportOnePointBitArray(EmMutationSupport[BitArray,A_co]):
         :return: new `EmMutationSupportOnePointBitArray` instance with the same properties
         :rtype: `EmMutationSupportOnePointBitArray`
         """
-        sol = deepcopy(self)
+        sol = EmMutationSupportOnePointBitArray(self.mutation_probability)
         return sol
 
     def copy(self):

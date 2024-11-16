@@ -17,6 +17,15 @@ from uo.algorithm.algorithm import Algorithm
 
 class GaSelection(metaclass=ABCMeta):
     
+    @abstractmethod
+    def copy(self):
+        """
+        Copy the current object
+
+        :return:  new instance with the same properties
+        :rtype: :class:`GaOptimizer`
+        """
+        raise NotImplementedError
 
     @abstractmethod
     def selection(self, optimizer:Algorithm)->None:

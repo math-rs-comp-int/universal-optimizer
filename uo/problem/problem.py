@@ -8,7 +8,6 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
-from copy import deepcopy
 from abc import ABCMeta, abstractmethod
 
 class Problem(metaclass=ABCMeta):
@@ -23,9 +22,6 @@ class Problem(metaclass=ABCMeta):
     Methods:
         __init__(name: str = "", is_minimization: Optional[bool] = None, is_multi_objective: Optional[bool] = None) -> None:
             Initializes a new `Problem` instance with the specified name, minimization flag, and multi-objective flag.
-        
-        __copy__() -> Problem:
-            Creates a deep copy of the current target problem instance.
         
         copy() -> Problem:
             Creates a copy of the current target problem instance.
@@ -74,25 +70,16 @@ class Problem(metaclass=ABCMeta):
         self.__is_minimization:bool = is_minimization
         self.__is_multi_objective:bool = is_multi_objective
 
-    def __copy__(self):
-        """
-        Internal copy of the current target problem
-
-        :return:  new `Problem` instance with the same properties
-        :rtype: Problem
-        """
-        pr = deepcopy(self)
-        return pr
-
+    @abstractmethod
     def copy(self):
         """
-        Copy the current target problem
+        Copy the current object
 
-        :return: new `Problem` instance with the same properties
-        :rtype: Problem
+        :return:  new instance with the same properties
+        :rtype: :class:`Problem`
         """
-        return self.__copy__()
-
+        raise NotImplementedError
+    
     @property
     def name(self)->str:
         """

@@ -2,7 +2,6 @@
 The :mod:`~uo.algorithm.metaheuristic.finish_control` module describes the class :class:`~uo.algorithm.metaheuristic.FinishControl`.
 """
 
-from copy import deepcopy
 from pathlib import Path
 directory = Path(__file__).resolve()
 import sys
@@ -46,16 +45,6 @@ class FinishControl:
         self.__seconds_max = seconds_max
         self.__determine_criteria_helper__(criteria)
 
-    def __copy__(self):
-        """
-        Internal copy of the current finish control
-
-        :return:  new `FinishControl` instance with the same properties
-        :rtype: FinishControl
-        """
-        oc = deepcopy(self)
-        return oc
-
     def copy(self):
         """
         Copy the current finish control
@@ -63,8 +52,8 @@ class FinishControl:
         :return: new `FinishControl` instance with the same properties
         :rtype: FinishControl
         """
-        return self.__copy__()
-
+        cp = FinishControl(self.criteria, self.evaluations_max, self.iterations_max, self.seconds_max)
+        return cp
 
     def __determine_criteria_helper__(self, criteria:str):
         """

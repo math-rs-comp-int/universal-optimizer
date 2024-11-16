@@ -10,7 +10,6 @@ sys.path.append(directory.parent.parent)
 
 from random import random
 from random import randrange
-from copy import deepcopy
 from datetime import datetime
 
 from abc import ABCMeta, abstractmethod
@@ -65,6 +64,16 @@ class PopulationBasedMetaheuristic(Metaheuristic, metaclass=ABCMeta):
                 solution_template=solution_template)
         self.__current_population:Optional[list[Solution]] =  None
 
+    @abstractmethod
+    def copy(self):
+        """
+        Copy the current object
+
+        :return:  new instance with the same properties
+        :rtype: :class:`PopulationBasedMetaheuristic`
+        """
+        raise NotImplementedError
+    
     @property
     def current_population(self)->Optional[list[Solution]]:
         """

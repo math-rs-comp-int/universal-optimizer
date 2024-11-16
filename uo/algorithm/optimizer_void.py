@@ -3,7 +3,6 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
-from copy import deepcopy
 from datetime import datetime
 
 from typing import Optional

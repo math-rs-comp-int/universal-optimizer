@@ -1,4 +1,3 @@
-from copy import deepcopy
 from random import randint
 from random import choice
 import numpy as np
