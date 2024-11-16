@@ -19,7 +19,6 @@ from typing import NamedTuple
 from typing import TypeVar
 from typing import Generic
 from typing import Optional
-from copy import deepcopy
 from random import choice, random, randint
 
 from bitstring import BitArray
