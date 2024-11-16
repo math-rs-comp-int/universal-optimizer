@@ -57,16 +57,6 @@ class OutputControl:
         self.__determine_fields_helper__(fields)
         self.__determine_moments_helper__(moments)
 
-    def __copy__(self):
-        """
-        Internal copy of the current output control
-
-        :return:  new `OutputControl` instance with the same properties
-        :rtype: OutputControl
-        """
-        oc = self
-        return oc
-
     def copy(self):
         """
         Copy the current output control
@@ -74,7 +64,8 @@ class OutputControl:
         :return: new `OutputControl` instance with the same properties
         :rtype: OutputControl
         """
-        return self.__copy__()
+        oc:'OutputControl' = OutputControl()
+        return oc
 
     def __determine_fields_helper__(self, fields:str):
         """

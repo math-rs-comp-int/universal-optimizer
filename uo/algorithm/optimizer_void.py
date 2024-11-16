@@ -28,6 +28,18 @@ class OptimizerVoid(Optimizer):
     def init(self):
         return
 
+    def copy(self):
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        obj = OptimizerVoid(pr,
+                            self.name,
+                            oc)
+        return obj
+    
     def optimize(self)->Solution:
         return None
         

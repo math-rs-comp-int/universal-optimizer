@@ -1,11 +1,13 @@
 """ 
-The :mod:`~uo.solution.solution_void_object_str` module describes the class :class:`~uo.solution.SolutionVoidIntObject`.
+The :mod:`~uo.solution.solution_void_object_str` module describes the class :class:`~uo.solution.SolutionVoidObject`.
 """
 
 from pathlib import Path
 import sys
 directory = Path(__file__).resolve()
 sys.path.append(directory.parent)
+
+from typing import Optional
 
 from uo.utils.logger import logger
 
@@ -34,16 +36,24 @@ class SolutionVoidObject(Solution[object, str]):
         distance_calculation_cache_is_used, distance_calculation_cache_max_size)
 
     def copy(self)->'SolutionVoidObject':
+        fvs:Optional[list] = None
+        if self.fitness_values is not None:
+            fvs = self.fitness_values.copy()
+        ovs:Optional[list] = None
+        if self.objective_values is not None:
+            ovs = self.objective_values.copy()
         obj:SolutionVoidObject = SolutionVoidObject(self.random_seed,
                                         self.fitness_value,
+                                        fvs,
                                         self.objective_value,
+                                        ovs,
                                         self.is_feasible)
-        obj.evaluation_cache_cs = None
+        obj.__evaluation_cache_cs = None
         if self.evaluation_cache_cs is not None:
-            obj.evaluation_cache_cs = self.evaluation_cache_cs.copy()
-        obj.representation_distance_cache_cs = None
+            obj.__evaluation_cache_cs = self.evaluation_cache_cs
+        obj.__representation_distance_cache_cs = None
         if self.representation_distance_cache_cs is not None:
-            obj.representation_distance_cache_cs = self.representation_distance_cache_cs.copy()
+            obj.__representation_distance_cache_cs = self.representation_distance_cache_cs
         return obj
 
     def borrow_from(self, original: Solution) -> None:

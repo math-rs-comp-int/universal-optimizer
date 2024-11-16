@@ -41,12 +41,12 @@ class SolutionVoidInt(Solution[int, str]):
                                         self.fitness_value,
                                         self.objective_value,
                                         self.is_feasible)
-        obj.evaluation_cache_cs = None
+        obj.__evaluation_cache_cs = None
         if self.evaluation_cache_cs is not None:
-            obj.evaluation_cache_cs = self.evaluation_cache_cs.copy()
-        obj.representation_distance_cache_cs = None
+            obj.__evaluation_cache_cs = self.evaluation_cache_cs
+        obj.__representation_distance_cache_cs = None
         if self.representation_distance_cache_cs is not None:
-            obj.representation_distance_cache_cs = self.representation_distance_cache_cs.copy()
+            obj.__representation_distance_cache_cs = self.representation_distance_cache_cs
         return obj
     
     def borrow_from(self, original: Solution) -> None:

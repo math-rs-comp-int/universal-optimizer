@@ -18,7 +18,7 @@ from typing import Optional
 
 from uo.problem.problem import Problem
 from uo.solution.solution import Solution
-from uo.solution.solution_void_representation_object import SolutionVoidIntObject
+from uo.solution.solution_void_representation_object import SolutionVoidObject
 from uo.solution.quality_of_solution import QualityOfSolution
 
 
@@ -60,7 +60,7 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolverConstructionParameters:
         return self.__problem    
 
 
-class MaxOnesCountProblemIntegerLinearProgrammingSolution(SolutionVoidIntObject):
+class MaxOnesCountProblemIntegerLinearProgrammingSolution(SolutionVoidObject):
     def __init__(self, sol:'MaxOnesCountProblemIntegerLinearProgrammingSolver')->None:
         super().__init__()
         self.__sol = sol

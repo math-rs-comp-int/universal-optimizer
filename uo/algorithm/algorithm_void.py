@@ -3,6 +3,8 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
+from typing import Optional
+
 from datetime import datetime
 
 from uo.utils.logger import logger
@@ -30,6 +32,22 @@ class AlgorithmVoid(Algorithm):
 
     def init(self):
         return
+
+    def copy(self):
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        obj  = AlgorithmVoid(pr,
+                        st,
+                        self.name,
+                        oc)
+        return obj
 
     def optimize(self)->Solution:
         return None

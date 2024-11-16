@@ -42,11 +42,21 @@ class MetaheuristicVoid(Metaheuristic):
                 solution_template=solution_template
         )
 
-    def __copy__(self):
-        return super().__copy__()
-
     def copy(self):
-        return self.__copy__()
+        ocs:Optional[OutputControl] = None
+        if self.output_control is not None:
+            ocs = self.output_control.copy()
+        ads:Optional[AdditionalStatisticsControl] = None
+        if self.additional_statistics_control is not None:
+            ads = self.additional_statistics_control.copy()
+        obj = MetaheuristicVoid( self.finish_control.copy(),
+                    self.problem.copy(),
+                    self.solution_template.copy(),
+                    self.name,
+                    ocs,
+                    self.random_seed,
+                    ads)
+        return obj
 
     def init(self):
         return

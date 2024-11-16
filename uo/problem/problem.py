@@ -71,7 +71,7 @@ class Problem(metaclass=ABCMeta):
         self.__is_multi_objective:bool = is_multi_objective
 
     @abstractmethod
-    def copy(self):
+    def copy(self)->'Problem':
         """
         Copy the current object
 
@@ -89,6 +89,14 @@ class Problem(metaclass=ABCMeta):
         :rtype: str
         """
         return self.__name
+    
+    @name.setter
+    def name(self, name:str)->None:
+        """
+        Property setter for the name of the target problem
+        
+        """
+        self.__name = name
 
     @property
     def is_minimization(self)->bool:
@@ -99,6 +107,13 @@ class Problem(metaclass=ABCMeta):
         """
         return self.__is_minimization
 
+    @is_minimization.setter
+    def is_minimization(self, is_minimization:bool)->None:
+        """
+        Property setter 
+        
+        """
+        self.__is_minimization = is_minimization
 
     @property
     def is_multi_objective(self)->bool:
@@ -108,6 +123,14 @@ class Problem(metaclass=ABCMeta):
         :return: bool -- if optimization is multi objective
         """
         return self.__is_multi_objective
+
+    @is_multi_objective.setter
+    def is_multi_objective(self, is_multi_objective:bool)->None:
+        """
+        Property setter 
+        
+        """
+        self.__is_multi_objective = is_multi_objective
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 
             group_end:str ='}')->str:
