@@ -70,7 +70,6 @@ class MinSetCoverProblemBitArraySolution(Solution[BitArray,str]):
             self.representation = BitArray(bin=self.representation.bin)
         else:
             self.representation = None
-        original = None
         
     def argument(self, representation:BitArray)->str:
         """

@@ -50,7 +50,6 @@ class MaxOnesCountProblemIntSolution(Solution[int,str]):
 
     def borrow_from(self, original: Solution) -> None:
         super().borrow_from(original)
-        original = None
         
     def obtain_feasible_representation(self, problem:Problem) -> int:
         """

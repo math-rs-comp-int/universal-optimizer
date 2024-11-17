@@ -70,7 +70,6 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolution(SolutionVoidObject):
 
     def borrow_from(self, original: Solution) -> None:
         super().borrow_from(original)
-        original = None
     
 class MaxOnesCountProblemIntegerLinearProgrammingSolver(Optimizer):
 

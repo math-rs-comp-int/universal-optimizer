@@ -51,7 +51,6 @@ class SolutionVoidInt(Solution[int, str]):
     
     def borrow_from(self, original: Solution) -> None:
         super().borrow_from(original)
-        original = None
     
     def argument(self, representation:int)->str:
         return "42"

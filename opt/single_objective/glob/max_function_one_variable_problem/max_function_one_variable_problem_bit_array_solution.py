@@ -71,7 +71,6 @@ class FunctionOneVariableMaxProblemBitArraySolution(Solution[BitArray,float]):
             self.representation = BitArray(bin=self.representation.bin)
         else:
             self.representation = None
-        original = None
         
     @property
     def domain_from(self)->float:

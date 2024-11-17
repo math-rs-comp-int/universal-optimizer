@@ -60,7 +60,6 @@ class FunctionOneVariableMaxProblemIntSolution(Solution[int,float]):
         Copy all data from the original target solution
         """
         super().borrow_from(original)
-        original = None
                 
     @property
     def domain_from(self)->float:
