@@ -37,6 +37,12 @@ class MaxFunctionOneVariableMaxProblem(Problem):
         self.__domain_low:float = domain_low
         self.__domain_high:float = domain_high
 
+    def copy(self):
+        obj:MaxFunctionOneVariableMaxProblem = MaxFunctionOneVariableMaxProblem(self.expression,
+                                                        self.domain_low,
+                                                        self.domain_high)
+        return obj
+
     @classmethod
     def __load_from_file__(cls, file_path:str, data_format:str)->int:
         logger.debug("Load parameters: file path=" + str(file_path) 

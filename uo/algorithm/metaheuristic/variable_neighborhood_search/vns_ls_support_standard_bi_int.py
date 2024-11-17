@@ -80,7 +80,7 @@ class VnsLocalSearchSupportStandardBestImprovementInt(VnsLocalSearchSupport[int,
                 mask |= 1 << i
             solution.representation ^= mask 
             if optimizer.should_finish():
-                solution.borrow_from(start_sol)
+                solution.copy_from(start_sol)
                 return False
             optimizer.write_output_values_if_needed("before_evaluation", "b_e")
             optimizer.evaluation += 1
@@ -88,14 +88,14 @@ class VnsLocalSearchSupportStandardBestImprovementInt(VnsLocalSearchSupport[int,
             optimizer.write_output_values_if_needed("after_evaluation", "a_e")
             if solution.is_better(best_sol, problem):
                 better_sol_found = True
-                best_sol.borrow_from(solution)
+                best_sol.copy_from(solution)
             solution.representation ^= mask 
             # increment indexes and set in_loop accordingly
             in_loop = indexes.progress()
         if better_sol_found:
-            solution.borrow_from(best_sol)
+            solution.copy_from(best_sol)
             return True
-        solution.borrow_from(start_sol)
+        solution.copy_from(start_sol)
         return False
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 

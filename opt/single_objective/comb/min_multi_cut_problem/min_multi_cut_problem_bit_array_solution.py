@@ -46,29 +46,26 @@ class MinMultiCutProblemBitArraySolution(Solution[BitArray,str]):
                 distance_calculation_cache_is_used=distance_calculation_cache_is_used,
                 distance_calculation_cache_max_size=distance_calculation_cache_max_size)
 
-    def __copy__(self)->'MinMultiCutProblemBitArraySolution':
+    def copy(self)->'MinMultiCutProblemBitArraySolution':
         """
         Internal copy of the `MinMultiCutProblemBitArraySolution`
 
         :return: new `MinMultiCutProblemBitArraySolution` instance with the same properties
         :rtype: MinMultiCutProblemBitArraySolution
         """
-        sol = super().__copy__()
-        if self.representation is not None:
-            sol.representation = BitArray(bin=self.representation.bin)
-        else:
-            sol.representation = None
+        sol = MinMultiCutProblemBitArraySolution(self.random_seed)
+        sol.copy_from(self)
         return sol
 
-    def borrow_from(self, original)->None:
+    def copy_from(self, original)->None:
         """
         Copy all data from the original target solution
         """
-        super().borrow_from(original)
-        if original.representation is not None:
-            self.representation = BitArray(bin=self.representation.bin)
-        else:
-            self.representation = None
+        super().copy_from(original)
+        # if original.representation is not None:
+        #     self.representation = BitArray(bin=self.representation.bin)
+        # else:
+        #     self.representation = None
         
     def argument(self, representation:BitArray)->str:
         """

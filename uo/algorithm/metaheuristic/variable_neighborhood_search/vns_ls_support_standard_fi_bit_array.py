@@ -66,7 +66,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
         if k < optimizer.k_min or k > optimizer.k_max:
             return False
         start_sol:Solution = solution.copy()
-        start_sol.borrow_from(solution)
+        start_sol.copy_from(solution)
         # initialize indexes
         dim:int = int(math.ceil(math.log2(self.dimension)))
         indexes:ComplexCounterUniformAscending = ComplexCounterUniformAscending(k, dim)
@@ -83,7 +83,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
                 mask |= partial_mask
             solution.representation ^= mask 
             if optimizer.should_finish():
-                solution.borrow_from(start_sol)
+                solution.copy_from(start_sol)
                 return False
             optimizer.write_output_values_if_needed("before_evaluation", "b_e")
             optimizer.evaluation += 1
@@ -100,7 +100,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
             solution.representation ^= mask 
             # increment indexes and set in_loop accordingly
             in_loop = indexes.progress()
-        solution.borrow_from(start_sol)
+        solution.copy_from(start_sol)
         return False
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 

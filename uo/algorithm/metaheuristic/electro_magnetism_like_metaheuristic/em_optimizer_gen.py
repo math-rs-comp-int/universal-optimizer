@@ -86,10 +86,8 @@ class EmOptimizerGenerational(EmOptimizer):
 
     def copy(self):
         """
-        Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`        
+        Internal copy of the current instance 
+        :return: new instance of class 
         """
         eas:Optional[EmAttractionSupport] = None
         if self.em_attraction_support is not None:

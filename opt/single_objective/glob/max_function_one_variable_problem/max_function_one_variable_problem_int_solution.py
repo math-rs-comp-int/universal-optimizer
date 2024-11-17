@@ -48,18 +48,19 @@ class FunctionOneVariableMaxProblemIntSolution(Solution[int,float]):
         self.__domain_to:float|int = domain_to
         self.__number_of_intervals:int = number_of_intervals
 
-    def __copy__(self):
-        sol = super().__copy__()
-        sol.domain_from = self.domain_from
-        sol.domain_to = self.domain_to
-        sol.number_of_intervals = self.number_of_intervals
+    def copy(self):
+        sol = FunctionOneVariableMaxProblemIntSolution(self.domain_from,
+                                self.domain_to,
+                                self.number_of_intervals,
+                                self.random_seed)
+        sol.copy_from(self)
         return sol
 
-    def borrow_from(self, original)->None:
+    def copy_from(self, original)->None:
         """
         Copy all data from the original target solution
         """
-        super().borrow_from(original)
+        super().copy_from(original)
                 
     @property
     def domain_from(self)->float:

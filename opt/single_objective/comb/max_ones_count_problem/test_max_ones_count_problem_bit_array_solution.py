@@ -226,12 +226,12 @@ class TestMaxOnesCountProblemBitArraySolution(unittest.TestCase):
         self.assertEqual(solution.is_feasible, copy_solution.is_feasible)
 
     # Call the copy() method and verify that the returned MaxOnesCountProblemBitArraySolution instance is a deep copy of the original instance.
-    def test_borrow_from_method_returns_deep_copy(self):
+    def test_copy_from_method_returns_deep_copy(self):
         # Arrange
         solution = MaxOnesCountProblemBitArraySolution()
         # Act
         copy_solution = MaxOnesCountProblemBitArraySolution() 
-        copy_solution.borrow_from(solution)
+        copy_solution.copy_from(solution)
         # Assert
         self.assertIsNot(solution, copy_solution)
         self.assertEqual(solution.fitness_value, copy_solution.fitness_value)

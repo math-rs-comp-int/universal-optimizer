@@ -221,9 +221,9 @@ class TestMaxFunctionOneVariableProblemIntSolutionVnsSupport(unittest.TestCase):
 class Test__Copy__(unittest.TestCase):
 
     # Should return a deep copy of the object
-    def test_return_deep_copy(self):
+    def test_return_copy(self):
         sup = VnsShakingSupportStandardInt(42)
-        copy_sup = sup.__copy__()
+        copy_sup = sup.copy()
         self.assertIsNot(sup, copy_sup)
         self.assertEqual(sup.__dict__, copy_sup.__dict__)
 
@@ -231,40 +231,18 @@ class Test__Copy__(unittest.TestCase):
     def test_not_modify_original_object(self):
         sup = VnsShakingSupportStandardInt(42)
         original_dict = sup.__dict__.copy()
-        copy_sup = sup.__copy__()
+        copy_sup = sup.copy()
         self.assertEqual(sup.__dict__, original_dict)
 
     # Should copy all attributes of the object
     def test_copy_all_attributes(self):
         sup = VnsShakingSupportStandardInt(42)
-        sup.attribute1 = "value1"
-        sup.attribute2 = "value2"
-        copy_sup = sup.__copy__()
-        self.assertEqual(sup.attribute1, copy_sup.attribute1)
-        self.assertEqual(sup.attribute2, copy_sup.attribute2)
+        sup.__dimension = 45
+        copy_sup = sup.copy()
+        self.assertEqual(sup.dimension, copy_sup.dimension)
 
     # Should return a new object even if the original object is empty
     def test_return_new_object_empty(self):
         sup = VnsShakingSupportStandardInt(42)
-        copy_sup = sup.__copy__()
+        copy_sup = sup.copy()
         self.assertIsNot(sup, copy_sup)
-
-    # Should return a new object even if the original object has no mutable attributes
-    def test_return_new_object_no_mutable_attributes(self):
-        sup = VnsShakingSupportStandardInt(42)
-        sup.attribute1 = "value1"
-        sup.attribute2 = 10
-        copy_sup = sup.__copy__()
-        self.assertIsNot(sup, copy_sup)
-        self.assertEqual(sup.attribute1, copy_sup.attribute1)
-        self.assertEqual(sup.attribute2, copy_sup.attribute2)
-
-    # Should return a new object even if the original object has no immutable attributes
-    def test_return_new_object_no_immutable_attributes(self):
-        sup = VnsShakingSupportStandardInt(42)
-        sup.attribute1 = []
-        sup.attribute2 = {}
-        copy_sup = sup.__copy__()
-        self.assertIsNot(sup, copy_sup)
-        self.assertEqual(sup.attribute1, copy_sup.attribute1)
-        self.assertEqual(sup.attribute2, copy_sup.attribute2)

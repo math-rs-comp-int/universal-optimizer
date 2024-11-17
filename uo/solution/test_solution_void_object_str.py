@@ -42,7 +42,7 @@ class TestSolutionVoidIntObject(unittest.TestCase):
         self.assertFalse(solution.is_feasible)
         self.assertEqual(solution.representation, "representation")
 
-    # The copy, borrow_from, argument, string_representation, init_random, native_representation, init_from, calculate_quality_directly, calculate_quality, representation_distance_directly, representation_distance, string_rep, __str__, __repr__, and __format__ methods can be called and return expected results
+    # The copy, copy_from, argument, string_representation, init_random, native_representation, init_from, calculate_quality_directly, calculate_quality, representation_distance_directly, representation_distance, string_rep, __str__, __repr__, and __format__ methods can be called and return expected results
     def test_method_calls_and_results(self):
         # Arrange
         problem = ProblemVoidMinSO("a", True)

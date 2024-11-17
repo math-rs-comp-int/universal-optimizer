@@ -147,15 +147,15 @@ class TestSolution2(unittest.TestCase):
             self.assertEqual(solution.representation_distance_cache_cs.string_rep(''), 
                         copied_solution.representation_distance_cache_cs.string_rep(''))
 
-    # The borrow_from() method should copy all attributes from another Solution instance to the current instance.
-    def test_borrow_from_method(self):
+    # The copy_from() method should copy all attributes from another Solution instance to the current instance.
+    def test_copy_from_method(self):
         # Arrange
         original_solution = SolutionVoidInt(None, 0.5, 100, True, True, 100, True, 200)
         original_solution.fitness_values = [1, 2, 4]
         original_solution.objective_values = [5, 6, 7]
         solution = SolutionVoidInt(None, None, None, False, False, 0, False, 0)
         # Act
-        solution.borrow_from(original_solution)
+        solution.copy_from(original_solution)
         # Assert
         self.assertEqual(solution.random_seed, original_solution.random_seed)
         self.assertEqual(solution.fitness_value, original_solution.fitness_value)

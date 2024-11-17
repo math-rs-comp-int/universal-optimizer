@@ -61,6 +61,11 @@ class MinSetCoverProblem(Problem):
         self.__subsets = subsets
         self.__dimension = len(subsets)
 
+    def copy(self):
+        obj:MinSetCoverProblem = MinSetCoverProblem(self.universe,
+                                        self.subsets)
+        return obj
+    
     @classmethod
     def from_universe_and_subset_files(cls, universe:Set[int], subsets:list):
         """

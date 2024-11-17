@@ -50,7 +50,6 @@ class EmOptimizerConstructionParameters:
         random_seed: Optional[int] = None
         additional_statistics_control: Optional[AdditionalStatisticsControl] = None
 
-
 class EmOptimizer(PopulationBasedMetaheuristic, metaclass=ABCMeta):
     """
     Instance of the class :class:`~uo.algorithm.metaheuristic.electro_magnetism_like_metaheuristic.EmOptimizer` encapsulate 

@@ -65,11 +65,17 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolution(SolutionVoidObject):
         super().__init__()
         self.__sol = sol
 
+    def copy(self):
+        obj =MaxOnesCountProblemIntegerLinearProgrammingSolution(self.__sol)
+        obj.copy_from(self)
+        return obj
+
+    def copy_from(self, original: Solution) -> None:
+        super().copy_from(original)
+
     def string_representation(self):
         return str(self.__sol)    
 
-    def borrow_from(self, original: Solution) -> None:
-        super().borrow_from(original)
     
 class MaxOnesCountProblemIntegerLinearProgrammingSolver(Optimizer):
 
@@ -87,6 +93,16 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolver(Optimizer):
         super().__init__(name="MaxOnesCountProblemIntegerLinearProgrammingSolver",
                 problem=problem,  output_control=output_control )
         self.__model = Model()
+
+    def copy(self):
+        oc:Optional[OutputControl] = None 
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        pr:Optional[Problem] = None 
+        if self.problem is not None:
+            pr = self.problem.copy()
+        obj = MaxOnesCountProblemIntegerLinearProgrammingSolver(oc, pr)
+        return obj
 
     @classmethod
     def from_construction_tuple(cls, 

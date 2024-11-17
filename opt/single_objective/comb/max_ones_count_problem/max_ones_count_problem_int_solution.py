@@ -47,9 +47,13 @@ class MaxOnesCountProblemIntSolution(Solution[int,str]):
                 distance_calculation_cache_is_used=distance_calculation_cache_is_used,
                 distance_calculation_cache_max_size=distance_calculation_cache_max_size)
 
+    def copy(self):
+        obj = MaxOnesCountProblemIntSolution(self.random_seed)
+        obj.copy_from(self)
+        return obj
 
-    def borrow_from(self, original: Solution) -> None:
-        super().borrow_from(original)
+    def copy_from(self, original: Solution) -> None:
+        super().copy_from(original)
         
     def obtain_feasible_representation(self, problem:Problem) -> int:
         """

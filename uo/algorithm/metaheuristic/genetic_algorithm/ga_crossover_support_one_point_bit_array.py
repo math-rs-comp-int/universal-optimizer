@@ -82,8 +82,8 @@ class GaCrossoverSupportOnePointBitArray(GaCrossoverSupport[BitArray,A_co]):
             child1.evaluate(problem)
             child2.evaluate(problem)        
         else:
-            child1.borrow_from(solution1)
-            child2.borrow_from(solution2)
+            child1.copy_from(solution1)
+            child2.copy_from(solution2)
         
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 

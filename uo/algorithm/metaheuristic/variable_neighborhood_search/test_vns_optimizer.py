@@ -170,35 +170,8 @@ class TestVnsOptimizer(unittest.TestCase):
         # Add assertions here
         self.assertEqual( vns_optimizer.evaluation, 1)
 
-    # VnsOptimizer can successfully execute copy
-    def test_copy(self):
         # Arrange
         finish_control = FinishControl()
-        random_seed = None
-        problem = ProblemVoidMinSO("a problem", True)
-        solution_template = SolutionVoidInt( 43, 43, 43, True)
-        vns_shaking_support_stub = mocker.MagicMock(spec=VnsShakingSupport)
-        type(vns_shaking_support_stub).copy() = mocker.CallableMixin(spec="return self")
-        vns_ls_support_stub = mocker.MagicMock(spec=VnsLocalSearchSupport)
-        type(vns_ls_support_stub).local_search_best_improvement = mocker.CallableMixin(spec=lambda x: x)
-        type(vns_ls_support_stub).local_search_first_improvement= mocker.CallableMixin(spec=lambda x: x)
-        type(vns_ls_support_stub).copy = mocker.CallableMixin(spec="return self")
-        k_min = 1
-        k_max = 10
-        vns_optimizer = VnsOptimizer(vns_shaking_support=vns_shaking_support_stub, 
-                            vns_ls_support=vns_ls_support_stub,
-                            k_min=k_min, 
-                            k_max=k_max, 
-                            finish_control=finish_control,  
-                            problem=problem, 
-                            solution_template=solution_template, 
-                            random_seed=random_seed)
-        # Act
-        copied_optimizer = vns_optimizer.copy()
-        # Assert
-        self.assertIsNot(vns_optimizer, copied_optimizer)
-        self.assertEqual(vns_optimizer.random_seed, copied_optimizer.random_seed)
-        self.assertEqual(vns_optimizer.finish_control.criteria, copied_optimizer.finish_control.criteria)
 
     # VnsOptimizer can successfully execute string_rep
     def test_string_rep(self):

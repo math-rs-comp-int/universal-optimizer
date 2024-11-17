@@ -177,10 +177,8 @@ class MaxOnesCountProblemIntSolutionVnsLocalSearchSupport(VnsLocalSearchSupport[
         if k < 1:
             return False
         # ls_bi for k==1
-        start_sol:MaxOnesCountProblemIntSolution = MaxOnesCountProblemIntSolution()
-        start_sol.borrow_from(solution)
-        best_sol:MaxOnesCountProblemIntSolution = MaxOnesCountProblemIntSolution()
-        best_sol.borrow_from(solution)
+        start_sol:MaxOnesCountProblemIntSolution = solution.copy()
+        best_sol:MaxOnesCountProblemIntSolution = solution.copy()
         better_sol_found:bool = False
         for i in range(0, problem.dimension):
             mask:int = 1 << i
@@ -189,12 +187,12 @@ class MaxOnesCountProblemIntSolutionVnsLocalSearchSupport(VnsLocalSearchSupport[
             solution.evaluate(problem)
             if solution.is_better(best_sol, problem):
                 better_sol_found = True
-                best_sol.borrow_from(solution)
+                best_sol.copy_from(solution)
             solution.representation ^= mask 
         if better_sol_found:
-            solution.borrow_from(best_sol)
+            solution.copy_from(best_sol)
             return True
-        solution.borrow_from(start_sol)
+        solution.copy_from(start_sol)
         return False
 
     def local_search_first_improvement(self, k:int, problem:MaxOnesCountProblem2, solution:MaxOnesCountProblemIntSolution, 
@@ -205,7 +203,7 @@ class MaxOnesCountProblemIntSolutionVnsLocalSearchSupport(VnsLocalSearchSupport[
             return False
         # ls_fi for k==1
         start_sol:MaxOnesCountProblemIntSolution = MaxOnesCountProblemIntSolution()
-        start_sol.borrow_from(solution)
+        start_sol.copy_from(solution)
         for i in range(0, problem.dimension):
             mask:int = 1 << i
             solution.representation ^= mask 
@@ -216,7 +214,7 @@ class MaxOnesCountProblemIntSolutionVnsLocalSearchSupport(VnsLocalSearchSupport[
             if solution.is_better(start_sol, problem):
                 return True
             solution.representation ^= mask
-        solution.borrow_from(start_sol)
+        solution.copy_from(start_sol)
         return False
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 

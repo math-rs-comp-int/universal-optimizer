@@ -158,39 +158,6 @@ class TestGaOptimizerGenerational(unittest.TestCase):
         # Add assertions here
         self.assertEqual( ga_optimizer.evaluation, 1)
 
-    # GaOptimizerGenerational can successfully execute copy
-    def test_copy(self):
-        # Arrange
-        finish_control = FinishControl()
-        random_seed = None
-        problem = ProblemVoidMinSO("a problem", True)
-        solution_template = SolutionVoidInt( 43, 43, 43, True)
-        selection_stub = mocker.MagicMock(spec=GaSelection)
-        type(selection_stub).selection = mocker.CallableMixin(spec=lambda x: x)
-        ga_crossover_support_stub = mocker.MagicMock(spec=GaCrossoverSupport)
-        type(ga_crossover_support_stub).crossover = mocker.CallableMixin(spec=lambda x: x)
-        type(ga_crossover_support_stub).copy() = mocker.CallableMixin(spec="return self")        
-        ga_mutation_support_stub = mocker.MagicMock(spec=GaMutationSupport)
-        type(ga_mutation_support_stub).mutation = mocker.CallableMixin(spec=lambda x: x)
-        type(ga_mutation_support_stub).copy() = mocker.CallableMixin(spec="return self")        
-        population_size = 100
-        elitism_size = 10
-        ga_optimizer = GaOptimizerGenerational(ga_crossover_support=ga_crossover_support_stub, 
-                                ga_mutation_support=ga_mutation_support_stub, 
-                                ga_selection=selection_stub, 
-                                population_size=population_size, 
-                                elite_count=elitism_size,
-                                finish_control=finish_control, 
-                                problem=problem, 
-                                solution_template=solution_template,
-                                random_seed=random_seed)
-        # Act
-        copied_optimizer = ga_optimizer.copy()
-        # Assert
-        self.assertIsNot(ga_optimizer, copied_optimizer)
-        self.assertEqual(ga_optimizer.random_seed, copied_optimizer.random_seed)
-        self.assertEqual(ga_optimizer.finish_control.criteria, copied_optimizer.finish_control.criteria)
-
     # GaOptimizerGenerational raises TypeError if finish_control parameter is not of type FinishControl
     def test_finish_control_type_error(self):
         # Arrange

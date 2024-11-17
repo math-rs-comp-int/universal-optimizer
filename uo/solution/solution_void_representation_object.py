@@ -48,16 +48,11 @@ class SolutionVoidObject(Solution[object, str]):
                                         self.objective_value,
                                         ovs,
                                         self.is_feasible)
-        obj.__evaluation_cache_cs = None
-        if self.evaluation_cache_cs is not None:
-            obj.__evaluation_cache_cs = self.evaluation_cache_cs
-        obj.__representation_distance_cache_cs = None
-        if self.representation_distance_cache_cs is not None:
-            obj.__representation_distance_cache_cs = self.representation_distance_cache_cs
+        obj.copy_from(self)
         return obj
 
-    def borrow_from(self, original: Solution) -> None:
-        super().borrow_from(original)
+    def copy_from(self, original: Solution) -> None:
+        super().copy_from(original)
     
     def argument(self, representation:object)->str:
         return str(representation)

@@ -55,22 +55,23 @@ class FunctionOneVariableMaxProblemBitArraySolution(Solution[BitArray,float]):
         self.__number_of_intervals:int = number_of_intervals
         self.representation = BitArray(length=int(math.log2(self.number_of_intervals)) + 1)
 
-    def __copy__(self):
-        sol = super().__copy__()
-        sol.domain_from = self.domain_from
-        sol.domain_to = self.domain_to
-        sol.number_of_intervals = self.number_of_intervals
+    def copy(self):
+        sol = FunctionOneVariableMaxProblemBitArraySolution(self.domain_from,
+                                        self.domain_to,
+                                        self.number_of_intervals,
+                                        self.random_seed)
+        sol.copy_from(self)
         return sol
 
-    def borrow_from(self, original)->None:
+    def copy_from(self, original)->None:
         """
         Copy all data from the original target solution
         """
-        super().borrow_from(original)
-        if original.representation is not None:
-            self.representation = BitArray(bin=self.representation.bin)
-        else:
-            self.representation = None
+        super().copy_from(original)
+        # if original.representation is not None:
+        #     self.representation = BitArray(bin=self.representation.bin)
+        # else:
+        #     self.representation = None
         
     @property
     def domain_from(self)->float:

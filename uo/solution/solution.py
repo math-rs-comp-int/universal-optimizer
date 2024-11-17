@@ -2,6 +2,7 @@
 The :mod:`~uo.solution.solution` module describes the class :class:`~uo.solution.Solution`.
 """
 
+from copy import deepcopy
 from pathlib import Path
 directory = Path(__file__).resolve()
 import sys
@@ -104,17 +105,30 @@ class Solution(Generic[R_co,A_co], metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
-    def borrow_from(self, original:'Solution')->None:
+    def copy_from(self, original:'Solution')->None:
         """
         Copy all data from the original target solution
         """
+        self.__evaluation_cache_cs = original.__evaluation_cache_cs
+        self.__representation_distance_cache_cs = original.representation_distance_cache_cs
         self.__random_seed = original.__random_seed
         self.__fitness_value = original.__fitness_value
-        self.__fitness_values = original.__fitness_values
+        self.__fitness_values = None
+        if original.__fitness_values is not None:
+            self.__fitness_values = original.__fitness_values.copy()
         self.__objective_value = original.__objective_value
-        self.__objective_values = original.__objective_values
+        self.__objective_values = None
+        if original.__objective_values is not None:
+            self.__objective_values = original.__objective_values.copy()
         self.__is_feasible = original.__is_feasible
-        self.__representation = original.__representation
+        r_temp = original.__representation
+        if hasattr(r_temp, 'copy') and callable(getattr(r_temp, 'copy')):
+            self.__representation = r_temp.copy()
+        else:
+            try:
+                self.__representation = deepcopy(r_temp)
+            except TypeError:
+                self.__representation = r_temp
     
     def obtain_feasible_representation(self, problem:Problem)->R_co:
         if self.representation is None:

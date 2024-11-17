@@ -49,8 +49,8 @@ class SolutionVoidInt(Solution[int, str]):
             obj.__representation_distance_cache_cs = self.representation_distance_cache_cs
         return obj
     
-    def borrow_from(self, original: Solution) -> None:
-        super().borrow_from(original)
+    def copy_from(self, original: Solution) -> None:
+        super().copy_from(original)
     
     def argument(self, representation:int)->str:
         return "42"

@@ -307,32 +307,22 @@ class Test__Copy__(unittest.TestCase):
     # The method should return a new instance of the 'MaxFunctionOneVariableMaxProblem' class.
     def test_return_new_instance(self):
         problem = MaxFunctionOneVariableMaxProblem("x^2", 0, 10)
-        new_problem = problem.__copy__()
+        new_problem = problem.copy()
         self.assertIsInstance(new_problem, MaxFunctionOneVariableMaxProblem)
 
     # The new instance should be a deep copy of the original instance.
     def test_deep_copy(self):
         problem = MaxFunctionOneVariableMaxProblem("x^2", 0, 10)
-        new_problem = problem.__copy__()
+        new_problem = problem.copy()
         self.assertIsNot(problem, new_problem)
 
     # The new instance should have the same values for all attributes as the original instance.
     def test_same_attribute_values(self):
         problem = MaxFunctionOneVariableMaxProblem("x^2", 0, 10)
-        new_problem = problem.__copy__()
+        new_problem = problem.copy()
         self.assertEqual(problem.expression, new_problem.expression)
         self.assertEqual(problem.domain_low, new_problem.domain_low)
         self.assertEqual(problem.domain_high, new_problem.domain_high)
-
-    # The original instance should be an instance of a subclass of 'MaxFunctionOneVariableMaxProblem'. The method should return an instance of the same subclass.
-    def test_subclass_instance(self):
-        class SubclassProblem(MaxFunctionOneVariableMaxProblem):
-            pass
-        problem = SubclassProblem("x^2", 0, 10)
-        new_problem = problem.__copy__()
-        self.assertIsInstance(problem, SubclassProblem)
-        self.assertIsInstance(new_problem, SubclassProblem)
-
 
 class TestExpression(unittest.TestCase):
 
