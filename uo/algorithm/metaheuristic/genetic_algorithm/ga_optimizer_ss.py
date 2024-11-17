@@ -134,16 +134,16 @@ class GaOptimizerSteadyState(GaOptimizer):
         """
         gcs:Optional[GaCrossoverSupport] = None
         if self.ga_crossover_support is not None:
-            gcs = self.ga_crossover_support.clone()
+            gcs = self.ga_crossover_support.copy()
         gms:Optional[GaMutationSupport] = None
         if self.ga_mutation_support is not None:
-            gms = self.ga_mutation_support.clone()
+            gms = self.ga_mutation_support.copy()
         gs:Optional[GaSelection] = None
         if self.ga_selection is not None:
-            gs = self.ga_selection.clone()
+            gs = self.ga_selection.copy()
         fc:Optional[FinishControl] = None
         if self.finish_control is not None:
-            fc = self.finish_control.clone()
+            fc = self.finish_control.copy()
         pr:Optional[Problem] = None
         if self.problem is not None:
             pr = self.problem.copy()

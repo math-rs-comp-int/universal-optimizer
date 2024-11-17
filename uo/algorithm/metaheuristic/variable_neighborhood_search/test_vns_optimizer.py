@@ -178,7 +178,7 @@ class TestVnsOptimizer(unittest.TestCase):
         problem = ProblemVoidMinSO("a problem", True)
         solution_template = SolutionVoidInt( 43, 43, 43, True)
         vns_shaking_support_stub = mocker.MagicMock(spec=VnsShakingSupport)
-        type(vns_shaking_support_stub).copy = mocker.CallableMixin(spec="return self")
+        type(vns_shaking_support_stub).copy() = mocker.CallableMixin(spec="return self")
         vns_ls_support_stub = mocker.MagicMock(spec=VnsLocalSearchSupport)
         type(vns_ls_support_stub).local_search_best_improvement = mocker.CallableMixin(spec=lambda x: x)
         type(vns_ls_support_stub).local_search_first_improvement= mocker.CallableMixin(spec=lambda x: x)

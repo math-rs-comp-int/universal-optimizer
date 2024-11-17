@@ -157,10 +157,13 @@ class TestEmOptimizerGenerational(unittest.TestCase):
         solution_template = SolutionVoidInt( 43, 43, 43, True)
         em_attraction_support_stub = mocker.MagicMock(spec=EmAttractionSupport)
         type(em_attraction_support_stub).attraction = mocker.CallableMixin(spec=lambda x: x)
+        type(em_attraction_support_stub).copy() = mocker.CallableMixin(spec="return self")
         em_mutation_support_stub = mocker.MagicMock(spec=EmMutationSupport)
         type(em_mutation_support_stub).mutation = mocker.CallableMixin(spec=lambda x: x)
+        type(em_mutation_support_stub).copy() = mocker.CallableMixin(spec="return self")
         em_direction_support_stub = mocker.MagicMock(spec=EmDirectionSupport)
         type(em_direction_support_stub).direction = mocker.CallableMixin(spec=lambda x: x) 
+        type(em_direction_support_stub).copy() = mocker.CallableMixin(spec="return self")
         population_size = 100
         em_optimizer = EmOptimizerGenerational(em_attraction_support=em_attraction_support_stub, 
                                 em_mutation_support=em_mutation_support_stub, 

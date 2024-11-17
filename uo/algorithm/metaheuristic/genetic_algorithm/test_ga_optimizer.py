@@ -137,6 +137,7 @@ class TestGaOptimizerGenerational(unittest.TestCase):
         type(selection_stub).selection = mocker.CallableMixin(spec=lambda x: x)
         ga_crossover_support_stub = mocker.MagicMock(spec=GaCrossoverSupport)
         type(ga_crossover_support_stub).crossover = mocker.CallableMixin(spec=lambda x: x)
+        
         ga_mutation_support_stub = mocker.MagicMock(spec=GaMutationSupport)
         type(ga_mutation_support_stub).mutation = mocker.CallableMixin(spec=lambda x: x)
         population_size = 100
@@ -168,8 +169,10 @@ class TestGaOptimizerGenerational(unittest.TestCase):
         type(selection_stub).selection = mocker.CallableMixin(spec=lambda x: x)
         ga_crossover_support_stub = mocker.MagicMock(spec=GaCrossoverSupport)
         type(ga_crossover_support_stub).crossover = mocker.CallableMixin(spec=lambda x: x)
+        type(ga_crossover_support_stub).copy() = mocker.CallableMixin(spec="return self")        
         ga_mutation_support_stub = mocker.MagicMock(spec=GaMutationSupport)
         type(ga_mutation_support_stub).mutation = mocker.CallableMixin(spec=lambda x: x)
+        type(ga_mutation_support_stub).copy() = mocker.CallableMixin(spec="return self")        
         population_size = 100
         elitism_size = 10
         ga_optimizer = GaOptimizerGenerational(ga_crossover_support=ga_crossover_support_stub, 

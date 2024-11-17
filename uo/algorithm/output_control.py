@@ -67,8 +67,8 @@ class OutputControl:
         oc:'OutputControl' = OutputControl(self.__output_file, 
 				self.fields, 
 				self.moments)
-        oc.fields_headings = self.fields_headings.copy()
-        oc.fields_definitions = self.fields_definitions.copy()
+        oc.__fields_headings = self.fields_headings.copy()
+        oc.__fields_definitions = self.fields_definitions.copy()
         oc.__write_before_algorithm = self.__write_before_algorithm
         oc.__write_before_iteration= self.__write_before_iteration
         oc.__write_after_iteration = self.__write_after_iteration

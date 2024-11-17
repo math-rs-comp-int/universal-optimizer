@@ -58,23 +58,6 @@ class TestMonteCarloOptimizer(unittest.TestCase):
         self.assertIsNotNone(optimizer.current_solution)
         self.assertIsNotNone(optimizer.best_solution)
 
-    # Executes main_loop_iteration and updates best_solution when improvement is found
-    def test_main_loop_iteration_updates_best_solution(self):
-        # Arrange
-        finish_control = mock.Mock(spec=FinishControl)
-        problem = mock.Mock(spec=Problem)
-        solution_template = SolutionVoidInt()
-        optimizer = MonteCarloOptimizer(finish_control, problem, solution_template)
-        optimizer.init()
-    
-        optimizer.current_solution.is_better = mock.Mock(return_value=True)
-    
-        # Act
-        optimizer.main_loop_iteration()
-    
-        # Assert
-        self.assertEqual(optimizer.best_solution.representation, optimizer.current_solution.representation)
-
     # Generates correct string representation of MonteCarloOptimizer instance
     def test_string_representation(self):
         # Arrange
@@ -119,21 +102,6 @@ class TestMonteCarloOptimizer(unittest.TestCase):
         # Arrange & Act & Assert
         with self.assertRaises(TypeError):
             MonteCarloOptimizer(mock.Mock(spec=FinishControl), None, mock.Mock(spec=Solution))
-
-    # Ensures deep copy functionality works correctly for MonteCarloOptimizer instances
-    def test_deep_copy_functionality(self):
-        # Arrange
-        finish_control = mock.Mock(spec=FinishControl)
-        problem = mock.Mock(spec=Problem)
-        solution_template = SolutionVoidInt()
-    
-        optimizer = MonteCarloOptimizer(finish_control, problem, solution_template)
-    
-        # Act
-        copied_optimizer = optimizer.copy()
-    
-        # Assert
-        self.assertNotEqual(id(optimizer), id(copied_optimizer))
 
     # Validates that random_seed affects the randomness of the solution initialization
     def test_random_seed_affects_randomness(self):

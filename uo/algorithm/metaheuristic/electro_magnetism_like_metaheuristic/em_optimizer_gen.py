@@ -84,6 +84,50 @@ class EmOptimizerGenerational(EmOptimizer):
                 population_size=population_size
         )
 
+    def copy(self):
+        """
+        Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`
+
+        :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState` with the same properties
+        :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`        
+        """
+        eas:Optional[EmAttractionSupport] = None
+        if self.em_attraction_support is not None:
+            eas = self.em_attraction_support.copy()
+        ems:Optional[EmMutationSupport] = None
+        if self.em_mutation_support is not None:
+            gms = self.em_mutation_support.copy()
+        eds:Optional[EmDirectionSupport] = None
+        if self.em_direction_support is not None:
+            gs = self.em_direction_support.copy()
+        fc:Optional[FinishControl] = None
+        if self.finish_control is not None:
+            fc = self.finish_control.copy()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        asc:Optional[AdditionalStatisticsControl] = None
+        if self.additional_statistics_control is not None:
+            asc = self.additional_statistics_control.copy()
+        em_opt:'EmOptimizerGenerational' = EmOptimizerGenerational(eas,
+                                                ems,
+                                                eds,
+                                                self.population_size,
+                                                self.elite_count,
+                                                fc,
+                                                pr,
+                                                st,
+                                                oc,
+                                                self.random_seed,
+                                                asc)
+        return em_opt
+
     @classmethod
     def from_construction_tuple(cls, construction_tuple:EmOptimizerConstructionParameters):
         """

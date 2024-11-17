@@ -119,13 +119,13 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
         """        
         vss:Optional[VnsShakingSupport] = None
         if self.vns_shaking_support is not None:
-            vss = self.vns_shaking_support.clone()
+            vss = self.vns_shaking_support.copy()
         vls:Optional[VnsLocalSearchSupport] = None
         if self.vns_ls_support is not None:
-            vls = self.vns_ls_support.clone()
+            vls = self.vns_ls_support.copy()
         fc:Optional[FinishControl] = None
         if self.finish_control is not None:
-            fc = self.finish_control.clone()
+            fc = self.finish_control.copy()
         pr:Optional[Problem] = None
         if self.problem is not None:
             pr = self.problem.copy()

@@ -77,19 +77,37 @@ class MonteCarloOptimizer(SingleSolutionMetaheuristic):
                 output_control=output_control, 
                 problem=problem,
                 solution_template=solution_template)
-        self.current_solution = self.solution_template.copy()
+        self.current_solution = None
+        if self.solution_template is not None:
+            self.current_solution = self.solution_template.copy()
 
-    def __copy__(self):
+    def copy(self):
         """
         Internal copy of the current instance 
         
         :return: new instance with the same properties
         """
-        ga_opt:'MonteCarloOptimizer' = MonteCarloOptimizer(self.finish_control,
-                                                self.problem,
-                                                self.solution_template,
-                                                self.output_control,
-                                                self.random_seed)
+        fc:Optional[FinishControl] = None
+        if self.finish_control is not None:
+            fc = self.finish_control.copy()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        asc:Optional[AdditionalStatisticsControl] = None
+        if self.additional_statistics_control is not None:
+            asc = self.additional_statistics_control.copy()
+        ga_opt:'MonteCarloOptimizer' = MonteCarloOptimizer(fc,
+                                                pr,
+                                                st,
+                                                oc,
+                                                self.random_seed,
+                                                asc)
         return ga_opt    
 
     @classmethod
