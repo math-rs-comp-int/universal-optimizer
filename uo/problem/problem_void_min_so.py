@@ -28,10 +28,9 @@ class ProblemVoidMinSO(Problem):
         :return: new `ProblemVoidMinSO` instance with the same properties
         :rtype: `ProblemVoidMinSO`
         """        
-        obj:ProblemVoidMinSO = ProblemVoidMinSO()
-        obj.name = self.name
-        obj.is_minimization = self.is_minimization
-        obj.is_multi_objective = self.is_multi_objective
+        obj:ProblemVoidMinSO = ProblemVoidMinSO(self.name,
+            self.is_minimization,
+            self.is_multi_objective)
         return obj
     
     @classmethod

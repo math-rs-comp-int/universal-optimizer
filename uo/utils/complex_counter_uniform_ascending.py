@@ -35,16 +35,6 @@ class ComplexCounterUniformAscending:
         self.__counters:list[int] = [0] * number_of_counters
         self.reset()
 
-    def __copy__(self):
-        """
-        Internal copy of the current complex counter
-
-        :return:  new `ComplexCounterUniformAscending` instance with the same properties
-        :rtype: :class:`uo.utils.ComplexCounterUniformAscending`
-        """
-        ccud = deepcopy(self)
-        return ccud
-
     def copy(self):
         """
         Copy the current complex counter
@@ -52,7 +42,8 @@ class ComplexCounterUniformAscending:
         :return:  new `ComplexCounterUniformAscending` instance with the same properties
         :rtype: :class:`uo.utils.ComplexCounterUniformAscending`
         """
-        return self.__copy__()
+        ccud = deepcopy(self)
+        return ccud
 
     def current_state(self)->list[int]:
         """

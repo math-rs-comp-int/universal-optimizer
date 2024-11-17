@@ -28,16 +28,6 @@ class ComplexCounterUniformFull:
         self.__counter_size:int = counter_size
         self.__counters:list[int] = [0] * number_of_counters
 
-    def __copy__(self):
-        """
-        Internal copy of the current complex counter
-
-        :return:  new `ComplexCounterUniformFull` instance with the same properties
-        :rtype: :class:`uo.utils.ComplexCounterUniformFull`
-        """
-        cc = deepcopy(self)
-        return cc
-
     def copy(self):
         """
         Copy the current complex counter
@@ -45,7 +35,8 @@ class ComplexCounterUniformFull:
         :return:  new `ComplexCounterUniformFull` instance with the same properties
         :rtype: :class:`uo.utils.ComplexCounterUniformFull`
         """
-        return self.__copy__()
+        cc = deepcopy(self)
+        return cc
 
     def current_state(self)->list[int]:
         """

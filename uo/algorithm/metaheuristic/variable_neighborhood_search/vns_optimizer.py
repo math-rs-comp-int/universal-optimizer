@@ -117,16 +117,37 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
         :return: new `VnsOptimizer` instance with the same properties
         :rtype: `VnsOptimizer`
         """        
-        obj:VnsOptimizer = VnsOptimizer(self.vns_shaking_support,
-                                self.vns_ls_support,
+        vss:Optional[VnsShakingSupport] = None
+        if self.vns_shaking_support is not None:
+            vss = self.vns_shaking_support.clone()
+        vls:Optional[VnsLocalSearchSupport] = None
+        if self.vns_ls_support is not None:
+            vls = self.vns_ls_support.clone()
+        fc:Optional[FinishControl] = None
+        if self.finish_control is not None:
+            fc = self.finish_control.clone()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        asc:Optional[AdditionalStatisticsControl] = None
+        if self.additional_statistics_control is not None:
+            asc = self.additional_statistics_control.copy()
+        obj:VnsOptimizer = VnsOptimizer(vss,
+                                vls,
                                 self.k_min,
                                 self.k_max,
-                                self.finish_control,
-                                self.problem,
-                                self.solution_template,
-                                self.output_control,
+                                fc,
+                                pr,
+                                st,
+                                oc,
                                 self.random_seed,
-                                self.additional_statistics_control)
+                                asc)
         return obj
     
     @classmethod
