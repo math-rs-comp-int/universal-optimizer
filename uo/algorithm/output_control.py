@@ -64,7 +64,7 @@ class OutputControl:
         :return: new `OutputControl` instance with the same properties
         :rtype: OutputControl
         """
-        oc:'OutputControl' = OutputControl()
+        oc:'OutputControl' = OutputControl(self.__output_file, self.fields, self.moments)
         return oc
 
     def __determine_fields_helper__(self, fields:str):
