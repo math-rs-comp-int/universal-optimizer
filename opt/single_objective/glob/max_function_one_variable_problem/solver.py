@@ -69,7 +69,10 @@ from opt.single_objective.glob.max_function_one_variable_problem.max_function_on
         import FunctionOneVariableMaxProblemIntSolution
 from opt.single_objective.glob.max_function_one_variable_problem.max_function_one_variable_problem_bit_array_solution \
         import FunctionOneVariableMaxProblemBitArraySolution
-
+from uo.algorithm.exact.total_enumeration.te_operations_support_bit_array import\
+        TeOperationsSupportBitArray
+from uo.algorithm.exact.total_enumeration.te_optimizer import TeOptimizerConstructionParameters
+from uo.algorithm.exact.total_enumeration.te_optimizer import TeOptimizer
 
 """ 
 Solver.
