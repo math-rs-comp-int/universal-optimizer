@@ -64,7 +64,19 @@ class OutputControl:
         :return: new `OutputControl` instance with the same properties
         :rtype: OutputControl
         """
-        oc:'OutputControl' = OutputControl(self.__output_file, self.fields, self.moments)
+        oc:'OutputControl' = OutputControl(self.__output_file, 
+				self.fields, 
+				self.moments)
+	oc.fields_headings = self.fields_headings.copy()
+	oc.fields_definitions = self.fields_definitions.copy()
+        oc.__write_before_algorithm = self.__write_before_algorithm
+        oc.__write_before_iteration= self.__write_before_iteration
+        oc.__write_after_iteration = self.__write_after_iteration
+        oc.__write_before_evaluation = self.__write_before_evaluation
+        oc.__write_after_evaluation = self.__write_after_evaluation
+        oc.__write_before_step_in_iteration = self.__write_before_step_in_iteration
+        oc.__write_after_step_in_iteration = self.__write_after_step_in_iteration
+        oc.__write_after_algorithm = self.__write_after_algorithm
         return oc
 
     def __determine_fields_helper__(self, fields:str):
