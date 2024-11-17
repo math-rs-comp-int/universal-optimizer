@@ -38,6 +38,16 @@ class GaMutationSupportOnePointBitArray(GaMutationSupport[BitArray,A_co]):
         """
         self.__mutation_probability:float = mutation_probability
 
+    def copy(self):
+        """
+        Copy the `GaMutationSupportOnePointBitArray` instance
+
+        :return: new `GaMutationSupportOnePointBitArray` instance with the same properties
+        :rtype: `GaMutationSupportOnePointBitArray`
+        """
+        sol = GaMutationSupportOnePointBitArray(self.mutation_probability)
+        return sol
+
     @property
     def mutation_probability(self)->float:
         """
@@ -47,25 +57,6 @@ class GaMutationSupportOnePointBitArray(GaMutationSupport[BitArray,A_co]):
         :rtype: float
         """
         return self.__mutation_probability    
-
-    def __copy__(self):
-        """
-        Internal copy of the `GaMutationSupportOnePointBitArray`
-
-        :return: new `GaMutationSupportOnePointBitArray` instance with the same properties
-        :rtype: `GaMutationSupportOnePointBitArray`
-        """
-        sol = GaMutationSupportOnePointBitArray(self.mutation_probability)
-        return sol
-
-    def copy(self):
-        """
-        Copy the `GaMutationSupportOnePointBitArray` instance
-
-        :return: new `GaMutationSupportOnePointBitArray` instance with the same properties
-        :rtype: `GaMutationSupportOnePointBitArray`
-        """
-        return self.__copy__()
 
     def mutation(self, problem:Problem, solution:Solution, 
                 optimizer:PopulationBasedMetaheuristic)->None:

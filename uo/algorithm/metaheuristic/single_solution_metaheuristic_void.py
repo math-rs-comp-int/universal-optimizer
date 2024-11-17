@@ -48,19 +48,28 @@ class SingleSolutionMetaheuristicVoid(SingleSolutionMetaheuristic):
         return
     
     def copy(self):
-        ocs:Optional[OutputControl] = None
+        fc:Optional[FinishControl] = None
+        if self.finish_control is not None:
+            fc = self.finish_control.copy()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
         if self.output_control is not None:
-            ocs = self.output_control.copy()
-        ads:Optional[AdditionalStatisticsControl] = None
+            oc = self.output_control.copy()
+        asc:Optional[AdditionalStatisticsControl] = None
         if self.additional_statistics_control is not None:
-            ads = self.additional_statistics_control.copy()
-        obj = SingleSolutionMetaheuristicVoid(self.finish_control.copy(),
-                        self.problem.copy(),
-                        self.solution_template.copy(),
+            asc = self.additional_statistics_control.copy()
+        obj = SingleSolutionMetaheuristicVoid(fc,
+                        pr,
+                        st,
                         self.name,
-                        ocs,
+                        oc,
                         self.random_seed,
-                        ads)
+                        asc)
         return obj
     
     def main_loop_iteration(self)->None:

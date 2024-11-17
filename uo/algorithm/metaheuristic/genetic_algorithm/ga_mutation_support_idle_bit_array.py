@@ -32,16 +32,6 @@ A_co = TypeVar("A_co", covariant=True)
 
 class GaMutationSupportIdleBitArray(GaMutationSupport[BitArray,A_co]):
 
-    def __copy__(self):
-        """
-        Internal copy of the `GaMutationSupportIdleBitArray`
-
-        :return: new `GaMutationSupportIdleBitArray` instance with the same properties
-        :rtype: `GaMutationSupportIdleBitArray`
-        """
-        sol = GaMutationSupportIdleBitArray()
-        return sol
-
     def copy(self):
         """
         Copy the `GaMutationSupportIdleBitArray` instance
@@ -49,7 +39,8 @@ class GaMutationSupportIdleBitArray(GaMutationSupport[BitArray,A_co]):
         :return: new `GaMutationSupportIdleBitArray` instance with the same properties
         :rtype: `GaMutationSupportIdleBitArray`
         """
-        return self.__copy__()
+        sol = GaMutationSupportIdleBitArray()
+        return sol
 
     def mutation(self, problem:Problem, solution:Solution, 
                 optimizer:PopulationBasedMetaheuristic)->None:

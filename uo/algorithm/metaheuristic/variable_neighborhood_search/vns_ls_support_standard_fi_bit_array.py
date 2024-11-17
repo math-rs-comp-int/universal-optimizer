@@ -46,8 +46,7 @@ class VnsLocalSearchSupportStandardFirstImprovementBitArray(VnsLocalSearchSuppor
         :return: new `VnsLocalSearchSupportStandardFirstImprovementBitArray` instance with the same properties
         :rtype: `VnsLocalSearchSupportStandardFirstImprovementBitArray`
         """
-        obj:VnsLocalSearchSupportStandardFirstImprovementBitArray = VnsLocalSearchSupportStandardFirstImprovementBitArray(
-                        self.dimension)
+        obj = VnsLocalSearchSupportStandardFirstImprovementBitArray(self.dimension)
         return obj
 
     def local_search(self, k:int, problem:Problem, solution:Solution, 

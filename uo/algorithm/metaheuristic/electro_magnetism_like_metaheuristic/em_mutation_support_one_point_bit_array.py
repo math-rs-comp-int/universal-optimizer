@@ -38,6 +38,16 @@ class EmMutationSupportOnePointBitArray(EmMutationSupport[BitArray,A_co]):
         """
         self.__mutation_probability:float = mutation_probability
 
+    def copy(self):
+        """
+        Copy the `EmMutationSupportOnePointBitArray` instance
+
+        :return: new `EmMutationSupportOnePointBitArray` instance with the same properties
+        :rtype: `EmMutationSupportOnePointBitArray`
+        """
+        sol = EmMutationSupportOnePointBitArray(self.mutation_probability)
+        return sol
+
     @property
     def mutation_probability(self)->float:
         """
@@ -47,25 +57,6 @@ class EmMutationSupportOnePointBitArray(EmMutationSupport[BitArray,A_co]):
         :rtype: float
         """
         return self.__mutation_probability    
-
-    def __copy__(self):
-        """
-        Internal copy of the `EmMutationSupportOnePointBitArray`
-
-        :return: new `EmMutationSupportOnePointBitArray` instance with the same properties
-        :rtype: `EmMutationSupportOnePointBitArray`
-        """
-        sol = EmMutationSupportOnePointBitArray(self.mutation_probability)
-        return sol
-
-    def copy(self):
-        """
-        Copy the `EmMutationSupportOnePointBitArray` instance
-
-        :return: new `EmMutationSupportOnePointBitArray` instance with the same properties
-        :rtype: `EmMutationSupportOnePointBitArray`
-        """
-        return self.__copy__()
 
     def mutation(self, problem:Problem, solution:Solution, 
                 optimizer:PopulationBasedMetaheuristic)->None:

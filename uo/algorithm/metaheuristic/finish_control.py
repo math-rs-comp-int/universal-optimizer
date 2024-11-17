@@ -52,7 +52,10 @@ class FinishControl:
         :return: new `FinishControl` instance with the same properties
         :rtype: FinishControl
         """
-        cp = FinishControl(self.criteria, self.evaluations_max, self.iterations_max, self.seconds_max)
+        cp = FinishControl(self.criteria, 
+                    self.evaluations_max, 
+                    self.iterations_max, 
+                    self.seconds_max)
         return cp
 
     def __determine_criteria_helper__(self, criteria:str):

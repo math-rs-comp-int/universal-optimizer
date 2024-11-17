@@ -46,8 +46,7 @@ class VnsLocalSearchSupportStandardBestImprovementInt(VnsLocalSearchSupport[int,
         :return: new `VnsLocalSearchSupportStandardBestImprovementInt` instance with the same properties
         :rtype: `VnsLocalSearchSupportStandardBestImprovementInt`
         """        
-        obj:'VnsLocalSearchSupportStandardBestImprovementInt' = VnsLocalSearchSupportStandardBestImprovementInt(
-                                self.dimension)
+        obj = VnsLocalSearchSupportStandardBestImprovementInt(self.dimension)
         return obj
         
     def local_search(self, k:int, problem:Problem, solution:Solution, 

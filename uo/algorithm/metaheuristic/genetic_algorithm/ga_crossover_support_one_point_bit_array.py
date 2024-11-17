@@ -33,6 +33,16 @@ class GaCrossoverSupportOnePointBitArray(GaCrossoverSupport[BitArray,A_co]):
         """
         self.__crossover_probability:float = crossover_probability
 
+    def copy(self):
+        """
+        Copy the `GaCrossoverSupportOnePointBitArray` instance
+
+        :return: new `GaCrossoverSupportOnePointBitArray` instance with the same properties
+        :rtype: `GaCrossoverSupportOnePointBitArray`
+        """
+        obj:'GaCrossoverSupportOnePointBitArray' = GaCrossoverSupportOnePointBitArray(self.crossover_probability)
+        return obj
+
     @property
     def crossover_probability(self)->float:
         """
@@ -42,16 +52,6 @@ class GaCrossoverSupportOnePointBitArray(GaCrossoverSupport[BitArray,A_co]):
         :rtype: float
         """
         return self.__crossover_probability    
-
-    def copy(self):
-        """
-        Copy the `GaCrossoverSupportOnePointBitArray` instance
-
-        :return: new `GaCrossoverSupportOnePointBitArray` instance with the same properties
-        :rtype: `GaCrossoverSupportOnePointBitArray`
-        """
-        obj:'GaCrossoverSupportOnePointBitArray' = GaCrossoverSupportOnePointBitArray()
-        return obj
 
     def crossover(self, problem:Problem, solution1:Solution, solution2:Solution,
                 child1:Solution, child2:Solution, optimizer:PopulationBasedMetaheuristic) -> None:

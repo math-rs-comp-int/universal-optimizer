@@ -46,8 +46,7 @@ class VnsLocalSearchSupportStandardFirstImprovementInt(VnsLocalSearchSupport[int
         :return: new `VnsLocalSearchSupportStandardFirstImprovementInt` instance with the same properties
         :rtype: `VnsLocalSearchSupportStandardFirstImprovementInt`
         """        
-        obj:VnsLocalSearchSupportStandardFirstImprovementInt = VnsLocalSearchSupportStandardFirstImprovementInt(
-                        self.dimension)
+        obj = VnsLocalSearchSupportStandardFirstImprovementInt(self.dimension)
         return obj
         
     def local_search(self, k:int, problem:Problem, solution:Solution, 
