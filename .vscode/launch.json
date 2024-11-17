@@ -208,7 +208,7 @@
                 "--finishCriteria", "evaluations & seconds",
                 "--finishEvaluationsMax", "3000",  
                 "--finishIterationsMax", "0",  
-                "--finishSecondsMax", "0",
+                "--finishSecondsMax", "5",
                 "--randomSeed", "0", 
                 "--solutionEvaluationCacheIsUsed", "False", 
                 "--solutionEvaluationCacheMaxSize", "100000",
