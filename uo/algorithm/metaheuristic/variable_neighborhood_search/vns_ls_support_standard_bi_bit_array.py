@@ -14,7 +14,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 
 from typing import TypeVar
@@ -38,16 +37,6 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
         """
         super().__init__(dimension=dimension)
 
-    def __copy__(self):
-        """
-        Internal copy of the `VnsLocalSearchSupportStandardBestImprovementBitArray`
-
-        :return: new `VnsLocalSearchSupportStandardBestImprovementBitArray` instance with the same properties
-        :rtype: `VnsLocalSearchSupportStandardBestImprovementBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `VnsLocalSearchSupportStandardBestImprovementBitArray` instance
@@ -55,7 +44,8 @@ class VnsLocalSearchSupportStandardBestImprovementBitArray(VnsLocalSearchSupport
         :return: new `VnsLocalSearchSupportStandardBestImprovementBitArray` instance with the same properties
         :rtype: `VnsLocalSearchSupportStandardBestImprovementBitArray`
         """
-        return self.__copy__()
+        obj = VnsLocalSearchSupportStandardBestImprovementBitArray(self.dimension)
+        return obj
 
     def local_search(self, k:int, problem:Problem, solution:Solution, 
             optimizer: SingleSolutionMetaheuristic)->bool:

@@ -3,8 +3,6 @@ from io import TextIOWrapper
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-
 from uo.algorithm.output_control import OutputControl
 
 class TestOutputControlProperties(unittest.TestCase):

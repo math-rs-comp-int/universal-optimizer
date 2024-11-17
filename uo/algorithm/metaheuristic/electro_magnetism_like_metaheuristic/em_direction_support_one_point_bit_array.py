@@ -16,8 +16,6 @@ sys.path.append(directory.parent.parent)
 
 from typing import TypeVar
 
-
-from copy import deepcopy
 from random import choice, random, randint
 import numpy as np
 
@@ -32,30 +30,20 @@ A_co = TypeVar("A_co", covariant=True)
 
 class EmDirectionSupportOnePointBitArray(EmDirectionSupport[BitArray,A_co]):
 
-    # MISLIM DA OVO NE TREBA UOPSTE MENI ILI VIDI DA LI NESTO UOPSTE TREBA DA SE PROSLEDI KAO PARAMETAR
     def __init__(self)->None:
         """
         Create new `EmDirectionSupport` instance
         """  
 
-    def __copy__(self):
-        """
-        Internal copy of the `EmDirectionSupportOnePointBitArray`
-
-        :return: new `EmDirectionSupportOnePointBitArray` instance with the same properties
-        :rtype: `EmDirectionSupportOnePointBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
-
-    def copy(self):
+    def copy(self)->'EmDirectionSupportOnePointBitArray':
         """
         Copy the `EmDirectionSupportOnePointBitArray` instance
 
         :return: new `EmDirectionSupportOnePointBitArray` instance with the same properties
         :rtype: `EmDirectionSupportOnePointBitArray`
         """
-        return self.__copy__()
+        obj = EmDirectionSupportOnePointBitArray()
+        return obj
 
     def direction(self, problem:Problem, solution1:Solution, solution2:Solution, optimizer:PopulationBasedMetaheuristic) -> int:
         """

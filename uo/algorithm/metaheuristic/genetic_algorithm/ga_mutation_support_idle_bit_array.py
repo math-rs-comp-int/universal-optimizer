@@ -15,12 +15,10 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from abc import ABCMeta, abstractmethod
 from typing import NamedTuple
 from typing import TypeVar
 from typing import Generic
 from typing import Optional
-from copy import deepcopy
 from random import choice, random, randint
 
 from bitstring import BitArray
@@ -34,16 +32,6 @@ A_co = TypeVar("A_co", covariant=True)
 
 class GaMutationSupportIdleBitArray(GaMutationSupport[BitArray,A_co]):
 
-    def __copy__(self):
-        """
-        Internal copy of the `GaMutationSupportIdleBitArray`
-
-        :return: new `GaMutationSupportIdleBitArray` instance with the same properties
-        :rtype: `GaMutationSupportIdleBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `GaMutationSupportIdleBitArray` instance
@@ -51,7 +39,8 @@ class GaMutationSupportIdleBitArray(GaMutationSupport[BitArray,A_co]):
         :return: new `GaMutationSupportIdleBitArray` instance with the same properties
         :rtype: `GaMutationSupportIdleBitArray`
         """
-        return self.__copy__()
+        sol = GaMutationSupportIdleBitArray()
+        return sol
 
     def mutation(self, problem:Problem, solution:Solution, 
                 optimizer:PopulationBasedMetaheuristic)->None:

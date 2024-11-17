@@ -5,7 +5,6 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
-from copy import deepcopy
 from random import randrange
 from random import choice
 
@@ -37,8 +36,21 @@ class SolutionVoidInt(Solution[int, str]):
                 distance_calculation_cache_is_used=distance_calculation_cache_is_used,
                 distance_calculation_cache_max_size=distance_calculation_cache_max_size)
 
+    def copy(self)->'SolutionVoidInt':
+        obj:SolutionVoidInt = SolutionVoidInt(self.random_seed,
+                                        self.fitness_value,
+                                        self.objective_value,
+                                        self.is_feasible)
+        obj.__evaluation_cache_cs = None
+        if self.evaluation_cache_cs is not None:
+            obj.__evaluation_cache_cs = self.evaluation_cache_cs
+        obj.__representation_distance_cache_cs = None
+        if self.representation_distance_cache_cs is not None:
+            obj.__representation_distance_cache_cs = self.representation_distance_cache_cs
+        return obj
+    
     def copy_from(self, original: Solution) -> None:
-        return super().copy_from(original)
+        super().copy_from(original)
     
     def argument(self, representation:int)->str:
         return "42"

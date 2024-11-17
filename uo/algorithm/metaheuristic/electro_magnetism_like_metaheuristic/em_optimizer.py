@@ -12,8 +12,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 
 from abc import ABCMeta, abstractmethod
@@ -51,7 +49,6 @@ class EmOptimizerConstructionParameters:
         output_control: Optional[OutputControl] = None
         random_seed: Optional[int] = None
         additional_statistics_control: Optional[AdditionalStatisticsControl] = None
-
 
 class EmOptimizer(PopulationBasedMetaheuristic, metaclass=ABCMeta):
     """
@@ -114,6 +111,16 @@ class EmOptimizer(PopulationBasedMetaheuristic, metaclass=ABCMeta):
         self.__current_population = []
         for _ in range(self.population_size):
             self.__current_population .append(self.solution_template.copy())
+
+    @abstractmethod
+    def copy(self):
+        """
+        Copy the current object
+
+        :return:  new instance with the same properties
+        :rtype: :class:`EmOptimizer`
+        """
+        raise NotImplementedError
 
     @property
     def population_size(self)->int:

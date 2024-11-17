@@ -8,7 +8,6 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
-from copy import deepcopy
 from abc import ABCMeta, abstractmethod
 
 class Problem(metaclass=ABCMeta):
@@ -23,9 +22,6 @@ class Problem(metaclass=ABCMeta):
     Methods:
         __init__(name: str = "", is_minimization: Optional[bool] = None, is_multi_objective: Optional[bool] = None) -> None:
             Initializes a new `Problem` instance with the specified name, minimization flag, and multi-objective flag.
-        
-        __copy__() -> Problem:
-            Creates a deep copy of the current target problem instance.
         
         copy() -> Problem:
             Creates a copy of the current target problem instance.
@@ -74,25 +70,16 @@ class Problem(metaclass=ABCMeta):
         self.__is_minimization:bool = is_minimization
         self.__is_multi_objective:bool = is_multi_objective
 
-    def __copy__(self):
+    @abstractmethod
+    def copy(self)->'Problem':
         """
-        Internal copy of the current target problem
+        Copy the current object
 
-        :return:  new `Problem` instance with the same properties
-        :rtype: Problem
+        :return:  new instance with the same properties
+        :rtype: :class:`Problem`
         """
-        pr = deepcopy(self)
-        return pr
-
-    def copy(self):
-        """
-        Copy the current target problem
-
-        :return: new `Problem` instance with the same properties
-        :rtype: Problem
-        """
-        return self.__copy__()
-
+        raise NotImplementedError
+    
     @property
     def name(self)->str:
         """
@@ -102,6 +89,14 @@ class Problem(metaclass=ABCMeta):
         :rtype: str
         """
         return self.__name
+    
+    @name.setter
+    def name(self, name:str)->None:
+        """
+        Property setter for the name of the target problem
+        
+        """
+        self.__name = name
 
     @property
     def is_minimization(self)->bool:
@@ -112,6 +107,13 @@ class Problem(metaclass=ABCMeta):
         """
         return self.__is_minimization
 
+    @is_minimization.setter
+    def is_minimization(self, is_minimization:bool)->None:
+        """
+        Property setter 
+        
+        """
+        self.__is_minimization = is_minimization
 
     @property
     def is_multi_objective(self)->bool:
@@ -121,6 +123,14 @@ class Problem(metaclass=ABCMeta):
         :return: bool -- if optimization is multi objective
         """
         return self.__is_multi_objective
+
+    @is_multi_objective.setter
+    def is_multi_objective(self, is_multi_objective:bool)->None:
+        """
+        Property setter 
+        
+        """
+        self.__is_multi_objective = is_multi_objective
 
     def string_rep(self, delimiter:str, indentation:int=0, indentation_symbol:str='', group_start:str ='{', 
             group_end:str ='}')->str:

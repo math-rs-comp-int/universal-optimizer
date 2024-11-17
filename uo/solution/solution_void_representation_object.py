@@ -1,5 +1,5 @@
 """ 
-The :mod:`~uo.solution.solution_void_object_str` module describes the class :class:`~uo.solution.SolutionVoidIntObject`.
+The :mod:`~uo.solution.solution_void_object_str` module describes the class :class:`~uo.solution.SolutionVoidObject`.
 """
 
 from pathlib import Path
@@ -7,7 +7,7 @@ import sys
 directory = Path(__file__).resolve()
 sys.path.append(directory.parent)
 
-from copy import deepcopy
+from typing import Optional
 
 from uo.utils.logger import logger
 
@@ -19,7 +19,7 @@ from uo.solution.quality_of_solution import QualityOfSolution
 from uo.algorithm.optimizer import Optimizer
 from uo.algorithm.output_control import OutputControl
 
-class SolutionVoidIntObject(Solution[object, str]):
+class SolutionVoidObject(Solution[object, str]):
     def __init__(self, random_seed=None, 
                 fitness_value=0, 
                 fitness_values=None, 
@@ -35,8 +35,24 @@ class SolutionVoidIntObject(Solution[object, str]):
         evaluation_cache_is_used, evaluation_cache_max_size, 
         distance_calculation_cache_is_used, distance_calculation_cache_max_size)
 
+    def copy(self)->'SolutionVoidObject':
+        fvs:Optional[list] = None
+        if self.fitness_values is not None:
+            fvs = self.fitness_values.copy()
+        ovs:Optional[list] = None
+        if self.objective_values is not None:
+            ovs = self.objective_values.copy()
+        obj:SolutionVoidObject = SolutionVoidObject(self.random_seed,
+                                        self.fitness_value,
+                                        fvs,
+                                        self.objective_value,
+                                        ovs,
+                                        self.is_feasible)
+        obj.copy_from(self)
+        return obj
+
     def copy_from(self, original: Solution) -> None:
-        return super().copy_from(original)
+        super().copy_from(original)
     
     def argument(self, representation:object)->str:
         return str(representation)

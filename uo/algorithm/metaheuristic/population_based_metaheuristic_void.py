@@ -7,7 +7,6 @@ sys.path.append(directory.parent.parent)
 
 from random import random
 from random import randrange
-from copy import deepcopy
 from datetime import datetime
 from io import TextIOWrapper 
 

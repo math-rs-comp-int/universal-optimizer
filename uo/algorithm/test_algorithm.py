@@ -2,8 +2,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-
 from uo.problem.problem import Problem
 from uo.algorithm.output_control import OutputControl
 from uo.algorithm.algorithm import Algorithm

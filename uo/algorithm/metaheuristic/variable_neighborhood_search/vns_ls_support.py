@@ -34,7 +34,16 @@ class VnsLocalSearchSupport(Generic[R_co,A_co], metaclass=ABCMeta):
             raise TypeError('Parameter \'dimension\' must be int.')
         self.__dimension = dimension
 
+    @abstractmethod
+    def copy(self):
+        """
+        Copy the current object
 
+        :return:  new instance with the same properties
+        :rtype: :class:`VnsLocalSearchSupport`
+        """
+        raise NotImplementedError
+    
     @property
     def dimension(self)->int:
         """

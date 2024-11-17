@@ -15,7 +15,7 @@ from opt.single_objective.comb.max_ones_count_problem.max_ones_count_problem_ilp
 from opt.single_objective.comb.max_ones_count_problem.max_ones_count_problem_ilp_linopy import MaxOnesCountProblemIntegerLinearProgrammingSolverConstructionParameters
 from uo.solution.solution import Solution
 from uo.solution.solution_void_representation_int import SolutionVoidInt
-from uo.solution.solution_void_representation_object import SolutionVoidIntObject
+from uo.solution.solution_void_representation_object import SolutionVoidObject
 
 class TestMaxOnesCountProblemIlpLinopy(unittest.TestCase):
     
@@ -86,7 +86,7 @@ class TestMaxOnesCountProblemIlpLinopy(unittest.TestCase):
     # creating an instance of MaxOnesCountProblemIntegerLinearProgrammingSolverConstructionParameters with OutputControl and Problem parameters of the same type but different from OutputControl and Problem should raise a TypeError
     def test_same_types_different_classes(self):
         # Arrange
-        problem = SolutionVoidIntObject()
+        problem = SolutionVoidObject()
         # Act & Assert
         with self.assertRaises(TypeError):
             MaxOnesCountProblemIntegerLinearProgrammingSolverConstructionParameters(problem)

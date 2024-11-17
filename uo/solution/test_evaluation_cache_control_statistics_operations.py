@@ -2,8 +2,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-
 from uo.solution.evaluation_cache_control_statistics import EvaluationCacheControlStatistics
 
 class TestEvaluationCacheControlStatisticsOperations(unittest.TestCase):

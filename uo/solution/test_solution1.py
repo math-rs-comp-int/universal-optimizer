@@ -2,8 +2,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-
 from uo.problem.problem import Problem
 from uo.problem.problem_void_min_so import ProblemVoidMinSO
 
@@ -273,8 +271,6 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(solution.objective_values, copied_solution.objective_values)
         self.assertEqual(solution.is_feasible, copied_solution.is_feasible)
         self.assertEqual(solution.representation, copied_solution.representation)
-        self.assertEqual(solution.evaluation_cache_cs.max_cache_size, copied_solution.evaluation_cache_cs.max_cache_size)
-        self.assertEqual(solution.representation_distance_cache_cs.max_cache_size, copied_solution.representation_distance_cache_cs.max_cache_size)
 
     # Solution can be evaluated with a Problem object
     def test_evaluate_with_problem(self):

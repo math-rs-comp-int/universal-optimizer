@@ -1,4 +1,3 @@
-from copy import deepcopy
 from random import randint
 from random import choice
 from typing import Optional
@@ -27,12 +26,9 @@ class MaxOnesCountProblem2(Problem):
         self.__dimension = dim
         super().__init__("MaxOnesCountProblem2", is_minimization=False, is_multi_objective=False)   
 
-    def __copy__(self):
-        pr = deepcopy(self)
-        return pr
-
     def copy(self):
-        return self.__copy__()
+        pr = MaxOnesCountProblem2(self.dimension)
+        return pr
 
     @property
     def dimension(self)->int:
@@ -60,12 +56,9 @@ class MaxOnesCountProblemIntSolution(Solution[int,str]):
                 evaluation_cache_is_used=False, evaluation_cache_max_size=0, 
                 distance_calculation_cache_is_used=False, distance_calculation_cache_max_size=0)
 
-    def __copy__(self):
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
-        return self.__copy__()
+        sol = MaxOnesCountProblemIntSolution(self.random_seed)
+        return sol
         
     def init_random(self, problem:Problem)->None:
         if problem.dimension is None:
@@ -121,12 +114,9 @@ class MaxOnesCountProblemIntSolutionVnsShakingSupport(VnsShakingSupport[int,str]
     def __init__(self)->None:
         return
 
-    def __copy__(self):
-        sup = deepcopy(self)
-        return sup
-
     def copy(self):
-        return self.__copy__()
+        sup = MaxOnesCountProblemIntSolutionVnsShakingSupport()
+        return sup
         
     def shaking(self, k:int, problem:MaxOnesCountProblem2, solution:MaxOnesCountProblemIntSolution, 
             optimizer:Metaheuristic )->bool:
@@ -176,13 +166,9 @@ class MaxOnesCountProblemIntSolutionVnsLocalSearchSupport(VnsLocalSearchSupport[
     def __init__(self)->None:
         return
 
-    def __copy__(self):
-        sup = deepcopy(self)
-        return sup
-
     def copy(self):
-        return self.__copy__()
-        
+        sup = MaxOnesCountProblemIntSolutionVnsLocalSearchSupport()
+        return sup
 
     def local_search(self, k:int, problem:MaxOnesCountProblem2, solution:MaxOnesCountProblemIntSolution, 
             optimizer: Metaheuristic)->bool:
@@ -191,10 +177,8 @@ class MaxOnesCountProblemIntSolutionVnsLocalSearchSupport(VnsLocalSearchSupport[
         if k < 1:
             return False
         # ls_bi for k==1
-        start_sol:MaxOnesCountProblemIntSolution = MaxOnesCountProblemIntSolution()
-        start_sol.copy_from(solution)
-        best_sol:MaxOnesCountProblemIntSolution = MaxOnesCountProblemIntSolution()
-        best_sol.copy_from(solution)
+        start_sol:MaxOnesCountProblemIntSolution = solution.copy()
+        best_sol:MaxOnesCountProblemIntSolution = solution.copy()
         better_sol_found:bool = False
         for i in range(0, problem.dimension):
             mask:int = 1 << i

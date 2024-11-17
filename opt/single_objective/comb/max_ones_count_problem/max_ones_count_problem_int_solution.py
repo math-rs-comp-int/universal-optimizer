@@ -16,7 +16,6 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 from random import randint
 
@@ -48,9 +47,13 @@ class MaxOnesCountProblemIntSolution(Solution[int,str]):
                 distance_calculation_cache_is_used=distance_calculation_cache_is_used,
                 distance_calculation_cache_max_size=distance_calculation_cache_max_size)
 
+    def copy(self):
+        obj = MaxOnesCountProblemIntSolution(self.random_seed)
+        obj.copy_from(self)
+        return obj
 
     def copy_from(self, original: Solution) -> None:
-        return super().copy_from(original)
+        super().copy_from(original)
         
     def obtain_feasible_representation(self, problem:Problem) -> int:
         """

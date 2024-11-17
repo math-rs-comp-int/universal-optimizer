@@ -15,7 +15,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 from random import randint
 
@@ -35,16 +34,6 @@ A_co = TypeVar("A_co", covariant=True)
 
 class VnsLocalSearchSupportIdle(VnsLocalSearchSupport[R_co,A_co]):
     
-    def __copy__(self):
-        """
-        Internal copy of the `VnsLocalSearchSupportIdle`
-
-        :return: new `VnsLocalSearchSupportIdle` instance with the same properties
-        :rtype: VnsLocalSearchSupportIdle
-        """
-        sup = deepcopy(self)
-        return sup
-
     def copy(self):
         """
         Copy the `VnsLocalSearchSupportIdle`
@@ -52,7 +41,8 @@ class VnsLocalSearchSupportIdle(VnsLocalSearchSupport[R_co,A_co]):
         :return: new `VnsLocalSearchSupportIdle` instance with the same properties
         :rtype: `VnsLocalSearchSupportIdle`
         """        
-        return self.__copy__()
+        sup:'VnsLocalSearchSupportIdle' = VnsLocalSearchSupportIdle(self.dimension)
+        return sup
         
 
     def local_search(self, k:int, problem:Problem, solution:Solution, 

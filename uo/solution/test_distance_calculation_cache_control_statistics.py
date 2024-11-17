@@ -1,8 +1,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-
 from uo.solution.distance_calculation_cache_control_statistics import DistanceCalculationCacheControlStatistics
 
 class TestDistanceCalculationCacheControlStatistics(unittest.TestCase):

@@ -3,7 +3,6 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
-from copy import deepcopy
 from datetime import datetime
 
 from bitstring import BitArray
@@ -29,17 +28,6 @@ class ComplexCounterBitArrayFull:
         self.__number_of_counters:int = number_of_counters
         self.__counters:BitArray = BitArray(number_of_counters)
 
-    def __copy__(self):
-        """
-        Internal copy of the current complex counter
-
-        :return:  new `ComplexCounterBitArrayFull` instance with the same properties
-        :rtype: :class:`uo.utils.ComplexCounterBitArrayFull`
-        """
-        cc = ComplexCounterBitArrayFull(self.__number_of_counters)
-        cc.__counters = BitArray(bin=self.__counters.bin)
-        return cc
-
     def copy(self):
         """
         Copy the current complex counter
@@ -47,7 +35,9 @@ class ComplexCounterBitArrayFull:
         :return:  new `ComplexCounterBitArrayFull` instance with the same properties
         :rtype: :class:`uo.utils.ComplexCounterBitArrayFull`
         """
-        return self.__copy__()
+        cc = ComplexCounterBitArrayFull(self.__number_of_counters)
+        cc.__counters = BitArray(bin=self.__counters.bin)
+        return cc
 
     def current_state(self)->BitArray:
         """

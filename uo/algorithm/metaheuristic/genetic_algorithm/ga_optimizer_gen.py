@@ -12,8 +12,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 
 from typing import Optional
@@ -107,6 +105,50 @@ class GaOptimizerGenerational(GaOptimizer):
                 elite_count=elite_count
         )
 
+    def copy(self):
+        """
+        Copy the `GaOptimizerGenerational` instance
+
+        :return: new `GaOptimizerGenerational` instance with the same properties
+        :rtype: `GaOptimizerGenerational`
+        """
+        gcs:Optional[GaCrossoverSupport] = None
+        if self.ga_crossover_support is not None:
+            gcs = self.ga_crossover_support.copy()
+        gms:Optional[GaMutationSupport] = None
+        if self.ga_mutation_support is not None:
+            gms = self.ga_mutation_support.copy()
+        gs:Optional[GaSelection] = None
+        if self.ga_selection is not None:
+            gs = self.ga_selection.copy()
+        fc:Optional[FinishControl] = None
+        if self.finish_control is not None:
+            fc = self.finish_control.copy()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        asc:Optional[AdditionalStatisticsControl] = None
+        if self.additional_statistics_control is not None:
+            asc = self.additional_statistics_control.copy()
+        obj:'GaOptimizerGenerational' = GaOptimizerGenerational(gcs,
+                                            gms,
+                                            gs,
+                                            self.population_size,
+                                            self.elite_count,
+                                            fc,
+                                            pr,
+                                            st,
+                                            oc,
+                                            self.random_seed,
+                                            asc)
+        return obj
+    
     @classmethod
     def from_construction_tuple(cls, construction_tuple:GaOptimizerGenerationalConstructionParameters):
         """

@@ -6,7 +6,6 @@ sys.path.append(directory.parent.parent)
 
 from random import random
 from random import randrange
-from copy import deepcopy
 from datetime import datetime
 from io import TextIOWrapper 
 
@@ -43,11 +42,30 @@ class MetaheuristicVoid(Metaheuristic):
                 solution_template=solution_template
         )
 
-    def __copy__(self):
-        return super().__copy__()
-
     def copy(self):
-        return self.__copy__()
+        fc:Optional[FinishControl] = None
+        if self.finish_control is not None:
+            fc = self.finish_control.copy()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        asc:Optional[AdditionalStatisticsControl] = None
+        if self.additional_statistics_control is not None:
+            asc = self.additional_statistics_control.copy()
+        obj = MetaheuristicVoid(fc,
+                    pr,
+                    st,
+                    self.name,
+                    oc,
+                    self.random_seed,
+                    asc)
+        return obj
 
     def init(self):
         return

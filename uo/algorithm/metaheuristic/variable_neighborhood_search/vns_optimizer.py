@@ -13,8 +13,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 from random import random
 
@@ -112,6 +110,46 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
         # current value of the vns parameter k
         self.__k_current:Optional[int] = None
 
+    def copy(self):
+        """
+        Copy the `VnsOptimizer`
+        
+        :return: new `VnsOptimizer` instance with the same properties
+        :rtype: `VnsOptimizer`
+        """        
+        vss:Optional[VnsShakingSupport] = None
+        if self.vns_shaking_support is not None:
+            vss = self.vns_shaking_support.copy()
+        vls:Optional[VnsLocalSearchSupport] = None
+        if self.vns_ls_support is not None:
+            vls = self.vns_ls_support.copy()
+        fc:Optional[FinishControl] = None
+        if self.finish_control is not None:
+            fc = self.finish_control.copy()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        asc:Optional[AdditionalStatisticsControl] = None
+        if self.additional_statistics_control is not None:
+            asc = self.additional_statistics_control.copy()
+        obj:VnsOptimizer = VnsOptimizer(vss,
+                                vls,
+                                self.k_min,
+                                self.k_max,
+                                fc,
+                                pr,
+                                st,
+                                oc,
+                                self.random_seed,
+                                asc)
+        return obj
+    
     @classmethod
     def from_construction_tuple(cls, construction_tuple:VnsOptimizerConstructionParameters):
         """
@@ -132,6 +170,25 @@ class VnsOptimizer(SingleSolutionMetaheuristic):
             construction_tuple.additional_statistics_control
         )
 
+    @property
+    def vns_shaking_support(self)->VnsShakingSupport:
+        """
+        Property getter for the shaking support` in VNS
+
+        :return: shaking support in VNS
+        :rtype: `VnsShakingSupport`
+        """
+        return self.__vns_shaking_support
+
+    @property
+    def vns_ls_support(self)->VnsLocalSearchSupport:
+        """
+        Property getter for the local search support in VNS
+
+        :return: local search support  in VNS
+        :rtype: `VnsLocalSearchSupport`
+        """
+        return self.__vns_ls_support
 
     @property
     def k_min(self)->int:

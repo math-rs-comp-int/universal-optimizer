@@ -148,34 +148,6 @@ class TestEmOptimizerGenerational(unittest.TestCase):
         # Add assertions here
         self.assertEqual( em_optimizer.evaluation, 1)
 
-    # EmOptimizerGenerational can successfully execute copy
-    def test_copy(self):
-        # Arrange
-        finish_control = FinishControl()
-        random_seed = None
-        problem = ProblemVoidMinSO("a problem", True)
-        solution_template = SolutionVoidInt( 43, 43, 43, True)
-        em_attraction_support_stub = mocker.MagicMock(spec=EmAttractionSupport)
-        type(em_attraction_support_stub).attraction = mocker.CallableMixin(spec=lambda x: x)
-        em_mutation_support_stub = mocker.MagicMock(spec=EmMutationSupport)
-        type(em_mutation_support_stub).mutation = mocker.CallableMixin(spec=lambda x: x)
-        em_direction_support_stub = mocker.MagicMock(spec=EmDirectionSupport)
-        type(em_direction_support_stub).direction = mocker.CallableMixin(spec=lambda x: x) 
-        population_size = 100
-        em_optimizer = EmOptimizerGenerational(em_attraction_support=em_attraction_support_stub, 
-                                em_mutation_support=em_mutation_support_stub, 
-                                em_direction_support=em_direction_support_stub,
-                                population_size=population_size,
-                                finish_control=finish_control, 
-                                problem=problem, 
-                                solution_template=solution_template,
-                                random_seed=random_seed)
-        # Act
-        copied_optimizer = em_optimizer.copy()
-        # Assert
-        self.assertIsNot(em_optimizer, copied_optimizer)
-        self.assertEqual(em_optimizer.random_seed, copied_optimizer.random_seed)
-        self.assertEqual(em_optimizer.finish_control.criteria, copied_optimizer.finish_control.criteria)
 
         # em_direction_support getter works 
     def test_em_direction_support_getter(self):

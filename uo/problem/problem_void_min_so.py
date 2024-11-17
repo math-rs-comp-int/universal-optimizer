@@ -8,9 +8,6 @@ directory = Path(__file__).resolve()
 import sys
 sys.path.append(directory.parent)
 
-from copy import deepcopy
-
-
 from uo.problem.problem import Problem 
 
 class ProblemVoidMinSO(Problem):
@@ -24,6 +21,18 @@ class ProblemVoidMinSO(Problem):
                 raise TypeError('Parameter \'is_multi_objective\' must be \'bool\' .')        
         super().__init__(name, is_minimization, is_multi_objective)
 
+    def copy(self):
+        """
+        Copy the `ProblemVoidMinSO`
+        
+        :return: new `ProblemVoidMinSO` instance with the same properties
+        :rtype: `ProblemVoidMinSO`
+        """        
+        obj:ProblemVoidMinSO = ProblemVoidMinSO(self.name,
+            self.is_minimization,
+            self.is_multi_objective)
+        return obj
+    
     @classmethod
     def __load_from_file__(cls, data_representation: str)->None:
         return

@@ -13,7 +13,6 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 from random import random
 
@@ -43,29 +42,27 @@ class MaxOnesCountProblemBitArraySolution(Solution[BitArray,str]):
                 distance_calculation_cache_is_used=distance_calculation_cache_is_used,
                 distance_calculation_cache_max_size=distance_calculation_cache_max_size)
 
-    def __copy__(self):
+    def copy(self):
         """
         Internal copy of the `MaxOnesCountProblemBitArraySolution`
 
         :return: new `MaxOnesCountProblemBitArraySolution` instance with the same properties
         :rtype: MaxOnesCountProblemBitArraySolution
         """
-        sol = super().__copy__()
-        if self.representation is not None:
-            sol.representation = BitArray(bin=self.representation.bin)
-        else:
-            sol.representation = None
+        sol = MaxOnesCountProblemBitArraySolution(self.random_seed)
+        sol.copy_from(self)
         return sol
-
+        
     def copy_from(self, original)->None:
         """
         Copy all data from the original target solution
         """
         super().copy_from(original)
-        if original.representation is not None:
-            self.representation = BitArray(bin=self.representation.bin)
-        else:
-            self.representation = None
+        # CHECK IF THIS IS SOLVED IN PAREN CLASS
+        # if original.representation is not None:
+        #     self.representation = BitArray(bin=self.representation.bin)
+        # else:
+        #     self.representation = None
         
     def argument(self, representation:BitArray)->str:
         """

@@ -1,8 +1,9 @@
+from datetime import datetime
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-from datetime import datetime
+
+
 from uo.problem.problem_void_min_so import ProblemVoidMinSO
 from uo.solution.solution_void_representation_int import SolutionVoidInt
 
@@ -145,7 +146,7 @@ class TestTeOptimizerMethodInit(unittest.TestCase):
         self.te_optimizer.write_output_headers_if_needed = mocker.Mock(return_value='write_output_headers_if_needed')
         self.te_optimizer.write_output_values_if_needed = mocker.Mock(return_value='write_output_values_if_needed')
     
-    def test_init_method_should_evaluate_solution_template_once(self):
+    def test_init_method_should_evaluate_solution_template_once(self):   
         self.te_optimizer.execution_started = datetime.now()
         self.te_optimizer.init()
         self.solution_mock.evaluate.assert_called_once()

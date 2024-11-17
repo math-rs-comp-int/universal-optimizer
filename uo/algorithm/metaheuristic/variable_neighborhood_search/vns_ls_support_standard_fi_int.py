@@ -15,7 +15,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 from random import randint
 
@@ -40,16 +39,6 @@ class VnsLocalSearchSupportStandardFirstImprovementInt(VnsLocalSearchSupport[int
         """
         super().__init__(dimension=dimension)
 
-    def __copy__(self):
-        """
-        Internal copy of the `VnsLocalSearchSupportStandardFirstImprovementInt`
-
-        :return: new `VnsLocalSearchSupportStandardFirstImprovementInt` instance with the same properties
-        :rtype: VnsLocalSearchSupportStandardFirstImprovementInt
-        """
-        sup = deepcopy(self)
-        return sup
-
     def copy(self):
         """
         Copy the `VnsLocalSearchSupportStandardFirstImprovementInt`
@@ -57,7 +46,8 @@ class VnsLocalSearchSupportStandardFirstImprovementInt(VnsLocalSearchSupport[int
         :return: new `VnsLocalSearchSupportStandardFirstImprovementInt` instance with the same properties
         :rtype: `VnsLocalSearchSupportStandardFirstImprovementInt`
         """        
-        return self.__copy__()
+        obj = VnsLocalSearchSupportStandardFirstImprovementInt(self.dimension)
+        return obj
         
     def local_search(self, k:int, problem:Problem, solution:Solution, 
             optimizer: SingleSolutionMetaheuristic)->bool:

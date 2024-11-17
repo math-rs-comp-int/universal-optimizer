@@ -19,6 +19,9 @@ from uo.algorithm.metaheuristic.genetic_algorithm.ga_selection import GaSelectio
 
 class GaSelectionRoulette(GaSelection):
     
+    def copy(self):
+        obj = GaSelectionRoulette()
+        return obj
     
     def selection(self, optimizer:GaOptimizer)->None:
         """

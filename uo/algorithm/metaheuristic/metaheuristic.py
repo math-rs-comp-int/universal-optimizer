@@ -10,7 +10,6 @@ sys.path.append(directory.parent.parent)
 
 from random import random
 from random import randrange
-from copy import deepcopy
 from datetime import datetime
 
 from abc import ABCMeta, abstractmethod
@@ -74,6 +73,16 @@ class Metaheuristic(Algorithm, metaclass=ABCMeta):
         else:
             self.__random_seed:int = randrange(sys.maxsize)
         self.__additional_statistics_control:AdditionalStatisticsControl = additional_statistics_control
+
+    @abstractmethod
+    def copy(self):
+        """
+        Copy the current object
+
+        :return:  new instance with the same properties
+        :rtype: :class:`Metaheuristic`
+        """
+        raise NotImplementedError
 
     @property
     def finish_control(self)->FinishControl:

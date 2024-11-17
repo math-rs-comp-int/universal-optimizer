@@ -13,7 +13,6 @@ sys.path.append(directory.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent)
 sys.path.append(directory.parent.parent.parent.parent.parent)
 
-from copy import deepcopy
 import networkx as nx
 import json
 
@@ -59,7 +58,12 @@ class MinMultiCutProblem(Problem):
         super().__init__(name="MinMultiCutProblem", is_minimization=True, is_multi_objective=False)
         self.__graph = graph
         self.__source_terminal_pairs = source_terminal_pairs
-        
+
+    def copy(self):
+        obj:MinMultiCutProblem = MinMultiCutProblem( self.graph.copy(),
+                                        self.source_terminal_pairs.copy())
+        return obj
+            
     @classmethod
     def from_graph_and_source_terminal_pairs(cls, graph:nx.Graph, source_terminal_pairs:list):
         """

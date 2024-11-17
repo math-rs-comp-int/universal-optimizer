@@ -14,7 +14,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
 from random import choice
 
 from typing import TypeVar
@@ -36,17 +35,6 @@ class VnsShakingSupportStandardBitArray(VnsShakingSupport[BitArray,A_co]):
         """
         super().__init__(dimension=dimension)
 
-
-    def __copy__(self):
-        """
-        Internal copy of the `VnsShakingSupportStandardBitArray`
-
-        :return: new `VnsShakingSupportStandardBitArray` instance with the same properties
-        :rtype: `VnsShakingSupportStandardBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
-
     def copy(self):
         """
         Copy the `VnsShakingSupportStandardBitArray` instance
@@ -54,7 +42,8 @@ class VnsShakingSupportStandardBitArray(VnsShakingSupport[BitArray,A_co]):
         :return: new `VnsShakingSupportStandardBitArray` instance with the same properties
         :rtype: `VnsShakingSupportStandardBitArray`
         """
-        return self.__copy__()
+        obj:VnsShakingSupportStandardBitArray = VnsShakingSupportStandardBitArray(self.dimension)
+        return obj
 
     def shaking(self, k:int, problem:Problem, solution:Solution, 
             optimizer:SingleSolutionMetaheuristic)->bool:

@@ -7,7 +7,6 @@ sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
 from dataclasses import dataclass
-from copy import deepcopy
 from datetime import datetime
 
 import xarray as xr
@@ -19,7 +18,7 @@ from typing import Optional
 
 from uo.problem.problem import Problem
 from uo.solution.solution import Solution
-from uo.solution.solution_void_representation_object import SolutionVoidIntObject
+from uo.solution.solution_void_representation_object import SolutionVoidObject
 from uo.solution.quality_of_solution import QualityOfSolution
 
 
@@ -61,16 +60,22 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolverConstructionParameters:
         return self.__problem    
 
 
-class MaxOnesCountProblemIntegerLinearProgrammingSolution(SolutionVoidIntObject):
+class MaxOnesCountProblemIntegerLinearProgrammingSolution(SolutionVoidObject):
     def __init__(self, sol:'MaxOnesCountProblemIntegerLinearProgrammingSolver')->None:
         super().__init__()
         self.__sol = sol
 
+    def copy(self):
+        obj =MaxOnesCountProblemIntegerLinearProgrammingSolution(self.__sol)
+        obj.copy_from(self)
+        return obj
+
+    def copy_from(self, original: Solution) -> None:
+        super().copy_from(original)
+
     def string_representation(self):
         return str(self.__sol)    
 
-    def copy_from(self, original: Solution) -> None:
-        return super().copy_from(original)
     
 class MaxOnesCountProblemIntegerLinearProgrammingSolver(Optimizer):
 
@@ -88,6 +93,16 @@ class MaxOnesCountProblemIntegerLinearProgrammingSolver(Optimizer):
         super().__init__(name="MaxOnesCountProblemIntegerLinearProgrammingSolver",
                 problem=problem,  output_control=output_control )
         self.__model = Model()
+
+    def copy(self):
+        oc:Optional[OutputControl] = None 
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        pr:Optional[Problem] = None 
+        if self.problem is not None:
+            pr = self.problem.copy()
+        obj = MaxOnesCountProblemIntegerLinearProgrammingSolver(oc, pr)
+        return obj
 
     @classmethod
     def from_construction_tuple(cls, 

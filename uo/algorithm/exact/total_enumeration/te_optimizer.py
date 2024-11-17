@@ -13,7 +13,6 @@ sys.path.append(directory.parent.parent)
 from random import random
 from random import randrange
 
-from copy import deepcopy
 from datetime import datetime
 from io import TextIOWrapper 
 
@@ -76,6 +75,31 @@ class TeOptimizer(Algorithm):
         self.__can_progress_method = self.__te_operations_support.can_progress
         # current solution
         self.__current_solution:Optional[Solution] = None
+
+    def copy(self):
+        """
+        Internal copy of the current instance of class 
+        
+        :return: new instance  with the same properties
+        """
+        tos:Optional[TeOperationsSupport] = None
+        if self.__te_operations_support is not None:
+            tos = self.__te_operations_support.copy()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        te_opt:'TeOptimizer' = TeOptimizer(tos,
+                                    pr,
+                                    st,
+                                    oc)
+        te_opt.__current_solution = self.__current_solution
+        return te_opt
 
     @classmethod
     def from_construction_tuple(cls, construction_tuple:TeOptimizerConstructionParameters):

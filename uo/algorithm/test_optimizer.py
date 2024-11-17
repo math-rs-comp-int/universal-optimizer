@@ -4,7 +4,6 @@ import unittest.mock as mocker
 
 from datetime import datetime
 from io import TextIOWrapper
-from copy import deepcopy
 
 from uo.problem.problem import Problem
 from uo.algorithm.output_control import OutputControl

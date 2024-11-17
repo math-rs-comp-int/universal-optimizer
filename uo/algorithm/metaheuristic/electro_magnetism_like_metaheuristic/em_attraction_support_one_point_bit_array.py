@@ -15,8 +15,6 @@ sys.path.append(directory.parent.parent)
 
 from typing import TypeVar
 
-
-from copy import deepcopy
 from random import choice, random, randint
 import numpy as np
 
@@ -31,22 +29,10 @@ A_co = TypeVar("A_co", covariant=True)
 
 class EmAttractionSupportOnePointBitArray(EmAttractionSupport[BitArray,A_co]):
 
-    # MISLIM DA OVO NE TREBA UOPSTE MENI ILI VIDI DA LI NESTO UOPSTE TREBA DA SE PROSLEDI KAO PARAMETAR
     def __init__(self)->None:
         """
         Create new `EmAttractionSupport` instance
         """
-   
-
-    def __copy__(self):
-        """
-        Internal copy of the `EmAttractionSupportOnePointBitArray`
-
-        :return: new `EmAttractionSupportOnePointBitArray` instance with the same properties
-        :rtype: `EmAttractionSupportOnePointBitArray`
-        """
-        sol = deepcopy(self)
-        return sol
 
     def copy(self):
         """
@@ -55,7 +41,8 @@ class EmAttractionSupportOnePointBitArray(EmAttractionSupport[BitArray,A_co]):
         :return: new `EmAttractionSupportOnePointBitArray` instance with the same properties
         :rtype: `EmAttractionSupportOnePointBitArray`
         """
-        return self.__copy__()
+        obj = EmAttractionSupportOnePointBitArray()
+        return obj
 
     def attraction(self, problem:Problem, solution1:Solution, solution2:Solution, charge1:float, charge2: float, optimizer:PopulationBasedMetaheuristic) -> float:
         """

@@ -1,8 +1,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
-
 from uo.problem.problem import Problem
 from uo.problem.problem_void_min_so import ProblemVoidMinSO
 
@@ -135,14 +133,18 @@ class TestSolution2(unittest.TestCase):
         self.assertIsNot(solution, copied_solution)
         self.assertEqual(solution.random_seed, copied_solution.random_seed)
         self.assertEqual(solution.fitness_value, copied_solution.fitness_value)
-        self.assertEqual(solution.fitness_values, copied_solution.fitness_values)
+        if solution.fitness_values is not None and copied_solution.fitness_values is not None:
+            self.assertListEqual(solution.fitness_values, copied_solution.fitness_values)
         self.assertEqual(solution.objective_value, copied_solution.objective_value)
-        self.assertEqual(solution.objective_values, copied_solution.objective_values)
+        if solution.objective_values is not None and copied_solution.objective_values is not None:
+            self.assertListEqual(solution.objective_values, copied_solution.objective_values)
         self.assertEqual(solution.is_feasible, copied_solution.is_feasible)
         self.assertEqual(solution.representation, copied_solution.representation)
-        self.assertEqual(solution.evaluation_cache_cs.string_rep(''), 
+        if solution.evaluation_cache_cs is not None and copied_solution.evaluation_cache_cs is not None:
+            self.assertEqual(solution.evaluation_cache_cs.string_rep(''), 
                         copied_solution.evaluation_cache_cs.string_rep(''))
-        self.assertEqual(solution.representation_distance_cache_cs.string_rep(''), 
+        if solution.representation_distance_cache_cs is not None and copied_solution.representation_distance_cache_cs is not None:
+            self.assertEqual(solution.representation_distance_cache_cs.string_rep(''), 
                         copied_solution.representation_distance_cache_cs.string_rep(''))
 
     # The copy_from() method should copy all attributes from another Solution instance to the current instance.

@@ -2,7 +2,6 @@
 The :mod:`~uo.algorithm.output_control` module describes the class :class:`~uo.algorithm.OutputControl`.
 """
 
-from copy import deepcopy
 from pathlib import Path
 from typing import Optional
 directory = Path(__file__).resolve()
@@ -58,16 +57,6 @@ class OutputControl:
         self.__determine_fields_helper__(fields)
         self.__determine_moments_helper__(moments)
 
-    def __copy__(self):
-        """
-        Internal copy of the current output control
-
-        :return:  new `OutputControl` instance with the same properties
-        :rtype: OutputControl
-        """
-        oc = self
-        return oc
-
     def copy(self):
         """
         Copy the current output control
@@ -75,7 +64,20 @@ class OutputControl:
         :return: new `OutputControl` instance with the same properties
         :rtype: OutputControl
         """
-        return self.__copy__()
+        oc:'OutputControl' = OutputControl(self.__output_file, 
+				self.fields, 
+				self.moments)
+        oc.__fields_headings = self.fields_headings.copy()
+        oc.__fields_definitions = self.fields_definitions.copy()
+        oc.__write_before_algorithm = self.__write_before_algorithm
+        oc.__write_before_iteration= self.__write_before_iteration
+        oc.__write_after_iteration = self.__write_after_iteration
+        oc.__write_before_evaluation = self.__write_before_evaluation
+        oc.__write_after_evaluation = self.__write_after_evaluation
+        oc.__write_before_step_in_iteration = self.__write_before_step_in_iteration
+        oc.__write_after_step_in_iteration = self.__write_after_step_in_iteration
+        oc.__write_after_algorithm = self.__write_after_algorithm
+        return oc
 
     def __determine_fields_helper__(self, fields:str):
         """

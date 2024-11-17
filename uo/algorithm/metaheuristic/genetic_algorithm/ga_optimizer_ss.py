@@ -12,8 +12,6 @@ sys.path.append(directory.parent)
 sys.path.append(directory.parent.parent)
 sys.path.append(directory.parent.parent.parent)
 
-from copy import deepcopy
-
 from random import choice
 
 from typing import Optional
@@ -126,24 +124,50 @@ class GaOptimizerSteadyState(GaOptimizer):
             construction_tuple.additional_statistics_control
         )
 
-    def __copy__(self):
+
+    def copy(self):
         """
         Internal copy of the current instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`
 
         :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState` with the same properties
         :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`        
         """
-        ga_opt = deepcopy(self)
+        gcs:Optional[GaCrossoverSupport] = None
+        if self.ga_crossover_support is not None:
+            gcs = self.ga_crossover_support.copy()
+        gms:Optional[GaMutationSupport] = None
+        if self.ga_mutation_support is not None:
+            gms = self.ga_mutation_support.copy()
+        gs:Optional[GaSelection] = None
+        if self.ga_selection is not None:
+            gs = self.ga_selection.copy()
+        fc:Optional[FinishControl] = None
+        if self.finish_control is not None:
+            fc = self.finish_control.copy()
+        pr:Optional[Problem] = None
+        if self.problem is not None:
+            pr = self.problem.copy()
+        st:Optional[Solution] = None
+        if self.solution_template is not None:
+            st = self.solution_template.copy()
+        oc:Optional[OutputControl] = None
+        if self.output_control is not None:
+            oc = self.output_control.copy()
+        asc:Optional[AdditionalStatisticsControl] = None
+        if self.additional_statistics_control is not None:
+            asc = self.additional_statistics_control.copy()
+        ga_opt:'GaOptimizerSteadyState' = GaOptimizerSteadyState( gcs,
+                                                gms,
+                                                gs,
+                                                self.population_size,
+                                                self.elite_count,
+                                                fc,
+                                                pr,
+                                                st,
+                                                oc,
+                                                self.random_seed,
+                                                asc)
         return ga_opt
-
-    def copy(self):
-        """
-        Copy the current instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`
-
-        :return: new instance of class :class:`~uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState` with the same properties
-        :rtype: :class:`uo.algorithm.metaheuristic.genetic_algorithm.GaOptimizerSteadyState`        
-        """
-        return self.__copy__()
 
     def init(self)->None:
         """

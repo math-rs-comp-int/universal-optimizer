@@ -2,7 +2,6 @@
 import unittest   
 import unittest.mock as mocker
 
-from copy import deepcopy
 from random import randint
 from random import choice
 

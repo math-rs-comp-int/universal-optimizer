@@ -10,7 +10,6 @@ sys.path.append(directory.parent.parent)
 
 from random import random
 from random import randrange
-from copy import deepcopy
 from datetime import datetime
 from io import TextIOWrapper 
 
@@ -69,6 +68,16 @@ class SingleSolutionMetaheuristic(Metaheuristic, metaclass=ABCMeta):
                 additional_statistics_control=additional_statistics_control)
         self.__current_solution:Optional[Solution] =  None
 
+    @abstractmethod
+    def copy(self):
+        """
+        Copy the current object
+
+        :return:  new instance with the same properties
+        :rtype: :class:`SingleSolutionMetaheuristic`
+        """
+        raise NotImplementedError
+    
     @property
     def current_solution(self)->Optional[Solution]:
         """
