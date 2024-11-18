@@ -68,10 +68,6 @@ class FunctionOneVariableMaxProblemBitArraySolution(Solution[BitArray,float]):
         Copy all data from the original target solution
         """
         super().copy_from(original)
-        # if original.representation is not None:
-        #     self.representation = BitArray(bin=self.representation.bin)
-        # else:
-        #     self.representation = None
         
     @property
     def domain_from(self)->float:

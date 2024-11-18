@@ -58,11 +58,6 @@ class MaxOnesCountProblemBitArraySolution(Solution[BitArray,str]):
         Copy all data from the original target solution
         """
         super().copy_from(original)
-        # CHECK IF THIS IS SOLVED IN PAREN CLASS
-        # if original.representation is not None:
-        #     self.representation = BitArray(bin=self.representation.bin)
-        # else:
-        #     self.representation = None
         
     def argument(self, representation:BitArray)->str:
         """
